@@ -53,19 +53,24 @@ namespace GroupCapstone.Controllers
         }
 
         // GET: EventHolder/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult EditEventHolder(int id)
         {
-            return View();
+            var editedEventHolder = db.eventHolders.Where(e => e.HolderId == id).SingleOrDefault();
+            return View(editedEventHolder);
         }
 
         // POST: EventHolder/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult EditEventHolder(int id, EventHolder eventHolder)
         {
             try
             {
                 // TODO: Add update logic here
-
+                var editedEventHolder = db.eventHolders.Where(c => c.HolderId == id).SingleOrDefault();
+                editedEventHolder.FirstName = eventHolder.FirstName;
+                editedEventHolder.LastName = eventHolder.LastName;
+                editedEventHolder.CompanyName = eventHolder.CompanyName;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
