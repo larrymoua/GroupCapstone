@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GroupCapstone.Models;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +10,11 @@ namespace GroupCapstone.Controllers
 {
     public class EventHolderController : Controller
     {
+        private ApplicationDbContext db;
+        public EventHolderController()
+        {
+            db = new ApplicationDbContext();
+        }
         // GET: EventHolder
         public ActionResult Index()
         {
@@ -23,17 +30,20 @@ namespace GroupCapstone.Controllers
         // GET: EventHolder/Create
         public ActionResult Create()
         {
-            return View();
+            EventHolder eventHolder = new EventHolder();
+            return View(eventHolder);
         }
 
         // POST: EventHolder/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(EventHolder eventHolder)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                db.eventHolders.Add(eventHolder);
+                eventHolder.ApplicationUserId = User.Identity.GetUserId();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
