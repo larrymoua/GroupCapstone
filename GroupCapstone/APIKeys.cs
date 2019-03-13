@@ -10,6 +10,7 @@ namespace GroupCapstone
         const string stripeKey = "api";
         const string googleMapKey = "api";
         const string openWeatherKey = "api";
+        const string test = "api";
 
     }
 }
