@@ -60,6 +60,7 @@ namespace GroupCapstone.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+        public Guest guest { get; internal set; }
     }
 
     public class RegisterViewModel

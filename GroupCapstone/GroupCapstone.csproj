@@ -175,6 +175,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="APIKeys.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -200,6 +201,10 @@
     <Compile Include="Migrations\201903131728390_newAttributes.cs" />
     <Compile Include="Migrations\201903131728390_newAttributes.Designer.cs">
       <DependentUpon>201903131728390_newAttributes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903131948568_zipAdding.cs" />
+    <Compile Include="Migrations\201903131948568_zipAdding.Designer.cs">
+      <DependentUpon>201903131948568_zipAdding.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -271,6 +276,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+
     <Content Include="Views\EventHolder\CreateEventHolder.cshtml" />
     <Content Include="Views\EventHolder\EditEventHolder.cshtml" />
     <Content Include="Views\EventHolder\CreateNewEvent.cshtml" />
@@ -278,6 +284,15 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Guest\" />
+
+    <Content Include="Views\Guest\Create.cshtml" />
+    <Content Include="Views\Guest\Details.cshtml" />
+    <Content Include="Views\Guest\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Views\EventHolder\" />
+
     <Folder Include="Views\Roles\" />
     <Folder Include="Views\Users\" />
   </ItemGroup>
@@ -303,6 +318,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903131728390_newAttributes.resx">
       <DependentUpon>201903131728390_newAttributes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903131948568_zipAdding.resx">
+      <DependentUpon>201903131948568_zipAdding.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
