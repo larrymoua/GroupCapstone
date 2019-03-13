@@ -202,6 +202,10 @@
     <Compile Include="Migrations\201903131728390_newAttributes.Designer.cs">
       <DependentUpon>201903131728390_newAttributes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903131948568_zipAdding.cs" />
+    <Compile Include="Migrations\201903131948568_zipAdding.Designer.cs">
+      <DependentUpon>201903131948568_zipAdding.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Bookmarks.cs" />
@@ -301,6 +305,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903131728390_newAttributes.resx">
       <DependentUpon>201903131728390_newAttributes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903131948568_zipAdding.resx">
+      <DependentUpon>201903131948568_zipAdding.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
