@@ -52,6 +52,27 @@ namespace GroupCapstone.Controllers
             }
         }
 
+        // GET: EventHolder/CreateNewEvent
+        public ActionResult CreateNewEvent()
+        {
+            Event newEvent = new Event();
+            return View(newEvent);
+        }
+
+        [HttpPost]
+        public ActionResult CreateNewEvent(Event newEvent)
+        {
+            try
+            {
+                db.events.Add(newEvent);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
         // GET: EventHolder/Edit/5
         public ActionResult EditEventHolder(int id)
         {
