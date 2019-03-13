@@ -85,5 +85,25 @@ namespace GroupCapstone.Controllers
                 return View();
             }
         }
+        public ActionResult EditEvent(int id)
+        {
+            return View();
+        }
+
+        // POST: EventHolder/Edit/5
+        [HttpPost]
+        public ActionResult EdiEvent(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add update logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
     }
 }
