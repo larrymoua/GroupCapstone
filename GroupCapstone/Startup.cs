@@ -1,4 +1,7 @@
-﻿using Microsoft.Owin;
+﻿using GroupCapstone.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartupAttribute(typeof(GroupCapstone.Startup))]
@@ -9,6 +12,32 @@ namespace GroupCapstone
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            createRolesandUsers();
+        }
+
+
+        // In this method we will create default User roles and Admin user for login   
+        private void createRolesandUsers()
+        {
+            ApplicationDbContext context = new ApplicationDbContext();
+
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+            if (!roleManager.RoleExists("Guest"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Guest";
+                roleManager.Create(role);
+
+            }
+            if (!roleManager.RoleExists("EventHolder"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "EventHolder";
+                roleManager.Create(role);
+
+            }
         }
     }
 }
