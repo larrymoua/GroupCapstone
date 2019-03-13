@@ -15,9 +15,7 @@ namespace GroupCapstone.Models
         public string FirstName { get; set; }
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
-        //ZipCode to look up local events.
-        [Display(Name = "Zip")]
-        public string Zip { get; set; }
+        public int Zip { get; set; }
 
         [ForeignKey("ApplicationUser")]
         public string ApplicationUserId { get; set; }

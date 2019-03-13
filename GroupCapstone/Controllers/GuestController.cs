@@ -2,7 +2,6 @@
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -12,7 +11,7 @@ namespace GroupCapstone.Controllers
 {
     public class GuestController : Controller
     {
-        ApplicationDbContext db = new ApplicationDbContext();
+        ApplicationDbContext db;
         // GET: Guest
 
         public GuestController()
