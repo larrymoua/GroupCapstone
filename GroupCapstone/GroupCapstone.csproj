@@ -182,6 +182,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\EventHolderController.cs" />
     <Compile Include="Controllers\GuestController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -339,6 +340,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\EventHolder\" />
+	   <Folder Include="Views\Event\" />
     <Folder Include="Views\Roles\" />
     <Folder Include="Views\Users\" />
   </ItemGroup>
