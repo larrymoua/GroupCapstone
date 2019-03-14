@@ -28,15 +28,15 @@ namespace GroupCapstone.Controllers
         }
 
         // GET: EventHolder/Create
-        public ActionResult Create()
+        public ActionResult CreateEventHolder()
         {
             EventHolder eventHolder = new EventHolder();
-            return View(eventHolder);
+            return View("CreateEventHolder", eventHolder);
         }
 
         // POST: EventHolder/Create
         [HttpPost]
-        public ActionResult Create(EventHolder eventHolder)
+        public ActionResult CreateEventHolder(EventHolder eventHolder)
         {
             try
             {
