@@ -222,6 +222,18 @@
     <Compile Include="Migrations\201903141505187_changeDisplayName1.Designer.cs">
       <DependentUpon>201903141505187_changeDisplayName1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903141607191_changeDisplayName2.cs" />
+    <Compile Include="Migrations\201903141607191_changeDisplayName2.Designer.cs">
+      <DependentUpon>201903141607191_changeDisplayName2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903141608591_changeDisplayName3.cs" />
+    <Compile Include="Migrations\201903141608591_changeDisplayName3.Designer.cs">
+      <DependentUpon>201903141608591_changeDisplayName3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903141616571_required.cs" />
+    <Compile Include="Migrations\201903141616571_required.Designer.cs">
+      <DependentUpon>201903141616571_required.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Bookmarks.cs" />
@@ -297,6 +309,7 @@
     <Content Include="Views\EventHolder\MyEvents.cshtml" />
     <Content Include="Views\EventHolder\CreateNewEvent.cshtml" />
     <Content Include="Views\EventHolder\EditEvent.cshtml" />
+    <Content Include="Views\EventHolder\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Guest\Create.cshtml" />
@@ -345,6 +358,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903141505187_changeDisplayName1.resx">
       <DependentUpon>201903141505187_changeDisplayName1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903141607191_changeDisplayName2.resx">
+      <DependentUpon>201903141607191_changeDisplayName2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903141608591_changeDisplayName3.resx">
+      <DependentUpon>201903141608591_changeDisplayName3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903141616571_required.resx">
+      <DependentUpon>201903141616571_required.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

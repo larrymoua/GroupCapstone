@@ -15,17 +15,25 @@ namespace GroupCapstone.Models
 
         [Display(Name = "Event's Name")]
         public string EventName { get; set; }
-
         [Display(Name = "Event's Date/Time")]
+        [Required]
         public DateTime EventDate{ get; set; }
+        [Required]
         public string Street { get; set; }
+        [Required]
         public string City { get; set; }
+        [Required]
         public States State { get; set; }
+        [Required]
         public int Zip { get; set; }
-        public int? Rating { get; set; }  
+        public int? Rating { get; set; }
+        [Required]
         public int TicketsAvailable { get; set; }
+        [Required]
         public Decimal TicketPrice { get; set; }
+       
         [Display(Name = "Category")]
+        [Required]
         public Category Categories { get; set; }
         public int HolderId { get; set; }
         [ForeignKey("HolderId")]
