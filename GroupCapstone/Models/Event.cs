@@ -27,7 +27,7 @@ namespace GroupCapstone.Models
         public Decimal TicketPrice { get; set; }
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
-        public virtual Category categories { get; set; }
+        public virtual Category Categories { get; set; }
         public int HolderId { get; set; }
         [ForeignKey("HolderId")]
         public virtual EventHolder EventHolders { get; set; }
