@@ -206,6 +206,22 @@
     <Compile Include="Migrations\201903131948568_zipAdding.Designer.cs">
       <DependentUpon>201903131948568_zipAdding.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903141442321_removeCategory.cs" />
+    <Compile Include="Migrations\201903141442321_removeCategory.Designer.cs">
+      <DependentUpon>201903141442321_removeCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903141452357_add-migration changeDisplayName.cs" />
+    <Compile Include="Migrations\201903141452357_add-migration changeDisplayName.Designer.cs">
+      <DependentUpon>201903141452357_add-migration changeDisplayName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903141455256_changeDisplayName.cs" />
+    <Compile Include="Migrations\201903141455256_changeDisplayName.Designer.cs">
+      <DependentUpon>201903141455256_changeDisplayName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903141505187_changeDisplayName1.cs" />
+    <Compile Include="Migrations\201903141505187_changeDisplayName1.Designer.cs">
+      <DependentUpon>201903141505187_changeDisplayName1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Bookmarks.cs" />
@@ -276,23 +292,19 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-
     <Content Include="Views\EventHolder\CreateEventHolder.cshtml" />
     <Content Include="Views\EventHolder\EditEventHolder.cshtml" />
+    <Content Include="Views\EventHolder\MyEvents.cshtml" />
     <Content Include="Views\EventHolder\CreateNewEvent.cshtml" />
+    <Content Include="Views\EventHolder\EditEvent.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Views\Guest\" />
-
     <Content Include="Views\Guest\Create.cshtml" />
     <Content Include="Views\Guest\Details.cshtml" />
     <Content Include="Views\Guest\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\EventHolder\" />
-
     <Folder Include="Views\Roles\" />
     <Folder Include="Views\Users\" />
   </ItemGroup>
@@ -321,6 +333,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903131948568_zipAdding.resx">
       <DependentUpon>201903131948568_zipAdding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903141442321_removeCategory.resx">
+      <DependentUpon>201903141442321_removeCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903141452357_add-migration changeDisplayName.resx">
+      <DependentUpon>201903141452357_add-migration changeDisplayName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903141455256_changeDisplayName.resx">
+      <DependentUpon>201903141455256_changeDisplayName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903141505187_changeDisplayName1.resx">
+      <DependentUpon>201903141505187_changeDisplayName1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
