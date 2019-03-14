@@ -18,7 +18,6 @@ namespace GroupCapstone.Models
         [Display(Name = "Company's Name")]
         public string CompanyName { get; set; }
         public int AvgRating { get; set; }
-
         [ForeignKeyAttribute("ApplicationUser")]
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }

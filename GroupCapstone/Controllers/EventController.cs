@@ -24,23 +24,17 @@ namespace GroupCapstone.Controllers
         // GET: Event/Create
         public ActionResult Create()
         {
-            Comments comments = new Comments();
-            return View(comments);
+            return View();
         }
 
         // POST: Event/Create
         [HttpPost]
-        public ActionResult Create([Bind(Include = "UserName,Comment,Date")]Comments comments)
+        public ActionResult Create(FormCollection collection)
         {
             try
             {
                 // TODO: Add insert logic here
-                if (ModelState.IsValid)
-                {
-                    db.events.Add(Comments);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
+                return RedirectToAction("Index");
             }
             catch
             {
