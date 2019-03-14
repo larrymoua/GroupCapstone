@@ -9,12 +9,13 @@ namespace GroupCapstone.Models
 {
     public class Ticket
     {
-        [Key]
-        public int TicketId { get; set; }
+
+        [Key, Column(Order = 0)]
         public int EventId { get; set; }
-        [ForeignKey("EventId")]
-    
+        [ForeignKey("EventId")]   
         public Event Events { get; set; }
+
+        [Key, Column(Order = 1)]
         public int GuestId { get; set; }
         [ForeignKey("GuestId")]
         public virtual Guest Guests { get; set; }

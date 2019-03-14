@@ -10,9 +10,7 @@ namespace GroupCapstone.Models
     public class Event
     {
         [Key]
-
         public int EventId { get; set; }
-
         [Display(Name = "Event's Name")]
         public string EventName { get; set; }
         [Display(Name = "Event's Date/Time")]
@@ -31,7 +29,9 @@ namespace GroupCapstone.Models
         public int TicketsAvailable { get; set; }
         [Required]
         public Decimal TicketPrice { get; set; }
-       
+
+        public string ImagePath { get; set; }
+  
         [Display(Name = "Category")]
         [Required]
         public Category Categories { get; set; }

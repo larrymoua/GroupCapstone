@@ -206,6 +206,18 @@
     <Compile Include="Migrations\201903131948568_zipAdding.Designer.cs">
       <DependentUpon>201903131948568_zipAdding.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903141532233_ImagePathToEvent.cs" />
+    <Compile Include="Migrations\201903141532233_ImagePathToEvent.Designer.cs">
+      <DependentUpon>201903141532233_ImagePathToEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903141643251_RemovePKFromBookmarks.cs" />
+    <Compile Include="Migrations\201903141643251_RemovePKFromBookmarks.Designer.cs">
+      <DependentUpon>201903141643251_RemovePKFromBookmarks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903141646088_RemovePKFromTicket.cs" />
+    <Compile Include="Migrations\201903141646088_RemovePKFromTicket.Designer.cs">
+      <DependentUpon>201903141646088_RemovePKFromTicket.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201903141442321_removeCategory.cs" />
     <Compile Include="Migrations\201903141442321_removeCategory.Designer.cs">
       <DependentUpon>201903141442321_removeCategory.cs</DependentUpon>
@@ -221,6 +233,7 @@
     <Compile Include="Migrations\201903141505187_changeDisplayName1.cs" />
     <Compile Include="Migrations\201903141505187_changeDisplayName1.Designer.cs">
       <DependentUpon>201903141505187_changeDisplayName1.cs</DependentUpon>
+
     </Compile>
     <Compile Include="Migrations\201903141607191_changeDisplayName2.cs" />
     <Compile Include="Migrations\201903141607191_changeDisplayName2.Designer.cs">
@@ -347,6 +360,16 @@
     <EmbeddedResource Include="Migrations\201903131948568_zipAdding.resx">
       <DependentUpon>201903131948568_zipAdding.cs</DependentUpon>
     </EmbeddedResource>
+
+    <EmbeddedResource Include="Migrations\201903141532233_ImagePathToEvent.resx">
+      <DependentUpon>201903141532233_ImagePathToEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903141643251_RemovePKFromBookmarks.resx">
+      <DependentUpon>201903141643251_RemovePKFromBookmarks.cs</DependentUpon>
+    </EmbeddedResource>
+  <EmbeddedResource Include="Migrations\201903141646088_RemovePKFromTicket.resx">
+    <DependentUpon>201903141646088_RemovePKFromTicket.cs</DependentUpon>
+  </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903141442321_removeCategory.resx">
       <DependentUpon>201903141442321_removeCategory.cs</DependentUpon>
     </EmbeddedResource>
@@ -358,6 +381,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903141505187_changeDisplayName1.resx">
       <DependentUpon>201903141505187_changeDisplayName1.cs</DependentUpon>
+
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903141607191_changeDisplayName2.resx">
       <DependentUpon>201903141607191_changeDisplayName2.cs</DependentUpon>
