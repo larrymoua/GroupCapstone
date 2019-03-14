@@ -9,15 +9,15 @@ namespace GroupCapstone.Models
 {
     public class Bookmarks
     {
-        [Key]
-        public int BookmarkId { get; set; }
+        [Key, Column(Order = 0)]
         public int EventId { get; set; }
         [ForeignKey("EventId")]
 
         public virtual Event Events { get; set; }
+
+        [Key, Column(Order = 1)]
         public int GuestId { get; set; }
         [ForeignKey("GuestId")]
-
         public virtual Guest Guests { get; set; }
     }
 }

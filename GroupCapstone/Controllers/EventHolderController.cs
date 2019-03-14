@@ -36,7 +36,7 @@ namespace GroupCapstone.Controllers
 
         // POST: EventHolder/Create
         [HttpPost]
-        public ActionResult Create(EventHolder eventHolder)
+        public ActionResult CreateEventHolder(EventHolder eventHolder)
         {
             try
             {
@@ -122,7 +122,7 @@ namespace GroupCapstone.Controllers
             }
         }
         public ActionResult EditEvent(int id)
-        {
+        {  
             return View();
         }
 

@@ -206,6 +206,18 @@
     <Compile Include="Migrations\201903131948568_zipAdding.Designer.cs">
       <DependentUpon>201903131948568_zipAdding.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903141532233_ImagePathToEvent.cs" />
+    <Compile Include="Migrations\201903141532233_ImagePathToEvent.Designer.cs">
+      <DependentUpon>201903141532233_ImagePathToEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903141643251_RemovePKFromBookmarks.cs" />
+    <Compile Include="Migrations\201903141643251_RemovePKFromBookmarks.Designer.cs">
+      <DependentUpon>201903141643251_RemovePKFromBookmarks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903141646088_RemovePKFromTicket.cs" />
+    <Compile Include="Migrations\201903141646088_RemovePKFromTicket.Designer.cs">
+      <DependentUpon>201903141646088_RemovePKFromTicket.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Bookmarks.cs" />
@@ -276,23 +288,17 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-
     <Content Include="Views\EventHolder\CreateEventHolder.cshtml" />
     <Content Include="Views\EventHolder\EditEventHolder.cshtml" />
     <Content Include="Views\EventHolder\CreateNewEvent.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Views\Guest\" />
-
     <Content Include="Views\Guest\Create.cshtml" />
     <Content Include="Views\Guest\Details.cshtml" />
     <Content Include="Views\Guest\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\EventHolder\" />
-
     <Folder Include="Views\Roles\" />
     <Folder Include="Views\Users\" />
   </ItemGroup>
@@ -321,6 +327,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903131948568_zipAdding.resx">
       <DependentUpon>201903131948568_zipAdding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903141532233_ImagePathToEvent.resx">
+      <DependentUpon>201903141532233_ImagePathToEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903141643251_RemovePKFromBookmarks.resx">
+      <DependentUpon>201903141643251_RemovePKFromBookmarks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903141646088_RemovePKFromTicket.resx">
+      <DependentUpon>201903141646088_RemovePKFromTicket.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
