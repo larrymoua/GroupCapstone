@@ -16,7 +16,7 @@ namespace GroupCapstone.Controllers
 
         public GuestController()
         {
-            ApplicationDbContext db = new ApplicationDbContext();
+            db = new ApplicationDbContext();
         }
         public ActionResult Index()
         {
@@ -57,8 +57,7 @@ namespace GroupCapstone.Controllers
             {
                 // TODO: Add insert logic here
                 if (ModelState.IsValid)
-                {
-                    //db.Guest.Add(guest);
+                {                   
                     db.guests.Add(guest);
                     guest.ApplicationUserId = User.Identity.GetUserId();
                     db.SaveChanges();
