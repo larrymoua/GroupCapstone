@@ -233,7 +233,6 @@
     <Compile Include="Migrations\201903141505187_changeDisplayName1.cs" />
     <Compile Include="Migrations\201903141505187_changeDisplayName1.Designer.cs">
       <DependentUpon>201903141505187_changeDisplayName1.cs</DependentUpon>
-
     </Compile>
     <Compile Include="Migrations\201903141607191_changeDisplayName2.cs" />
     <Compile Include="Migrations\201903141607191_changeDisplayName2.Designer.cs">
@@ -246,6 +245,14 @@
     <Compile Include="Migrations\201903141616571_required.cs" />
     <Compile Include="Migrations\201903141616571_required.Designer.cs">
       <DependentUpon>201903141616571_required.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903141859145_newattribute.cs" />
+    <Compile Include="Migrations\201903141859145_newattribute.Designer.cs">
+      <DependentUpon>201903141859145_newattribute.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903141931039_update.cs" />
+    <Compile Include="Migrations\201903141931039_update.Designer.cs">
+      <DependentUpon>201903141931039_update.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -360,16 +367,15 @@
     <EmbeddedResource Include="Migrations\201903131948568_zipAdding.resx">
       <DependentUpon>201903131948568_zipAdding.cs</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="Migrations\201903141532233_ImagePathToEvent.resx">
       <DependentUpon>201903141532233_ImagePathToEvent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903141643251_RemovePKFromBookmarks.resx">
       <DependentUpon>201903141643251_RemovePKFromBookmarks.cs</DependentUpon>
     </EmbeddedResource>
-  <EmbeddedResource Include="Migrations\201903141646088_RemovePKFromTicket.resx">
-    <DependentUpon>201903141646088_RemovePKFromTicket.cs</DependentUpon>
-  </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903141646088_RemovePKFromTicket.resx">
+      <DependentUpon>201903141646088_RemovePKFromTicket.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903141442321_removeCategory.resx">
       <DependentUpon>201903141442321_removeCategory.cs</DependentUpon>
     </EmbeddedResource>
@@ -381,7 +387,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903141505187_changeDisplayName1.resx">
       <DependentUpon>201903141505187_changeDisplayName1.cs</DependentUpon>
-
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903141607191_changeDisplayName2.resx">
       <DependentUpon>201903141607191_changeDisplayName2.cs</DependentUpon>
@@ -391,6 +396,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903141616571_required.resx">
       <DependentUpon>201903141616571_required.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903141859145_newattribute.resx">
+      <DependentUpon>201903141859145_newattribute.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903141931039_update.resx">
+      <DependentUpon>201903141931039_update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

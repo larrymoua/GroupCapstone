@@ -28,13 +28,10 @@ namespace GroupCapstone.Models
         [Required]
         public int TicketsAvailable { get; set; }
         [Required]
-        public Decimal TicketPrice { get; set; }
-
-        public string ImagePath { get; set; }
-  
-        [Display(Name = "Category")]
+        public Category Category { get; set; }
         [Required]
-        public Category Categories { get; set; }
+        public decimal TicketPrice { get; set; }
+        public string ImagePath { get; set; }
         public int HolderId { get; set; }
         [ForeignKey("HolderId")]
         public virtual EventHolder EventHolders { get; set; }

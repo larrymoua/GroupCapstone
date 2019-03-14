@@ -28,7 +28,8 @@ namespace GroupCapstone.Controllers
         // GET: EventHolder/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var foundEvent = db.events.Find(id);
+            return View(foundEvent);
         }
 
         // GET: EventHolder/Create
@@ -73,7 +74,9 @@ namespace GroupCapstone.Controllers
             {
       
 
-                var NewCreatedEvent = new Event { EventName = newEvent.EventName, EventDate = newEvent.EventDate, Street = newEvent.Street, City = newEvent.City, State = newEvent.State, Zip = newEvent.Zip, TicketsAvailable = newEvent.TicketsAvailable, TicketPrice = newEvent.TicketPrice, EventId = eventHolderFound.HolderId, Categories = newEvent.Categories, EventHolders = eventHolderFound, HolderId = eventHolderFound.HolderId };
+                var NewCreatedEvent = new Event { EventName = newEvent.EventName, EventDate = newEvent.EventDate, Street = newEvent.Street, City = newEvent.City, State = newEvent.State,
+                    Zip = newEvent.Zip, TicketsAvailable = newEvent.TicketsAvailable, TicketPrice = newEvent.TicketPrice, EventId = eventHolderFound.HolderId, Category = newEvent.Category,
+                    EventHolders = eventHolderFound, HolderId = eventHolderFound.HolderId };
                 db.events.Add(NewCreatedEvent);
                 db.SaveChanges();
                 return RedirectToAction("MyEvents");
