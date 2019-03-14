@@ -12,12 +12,12 @@ namespace GroupCapstone
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            createRolesandUsers();
+            CreateRolesandUsers();
         }
 
 
         // In this method we will create default User roles and Admin user for login   
-        private void createRolesandUsers()
+        private void CreateRolesandUsers()
         {
             ApplicationDbContext context = new ApplicationDbContext();
 
@@ -26,15 +26,19 @@ namespace GroupCapstone
 
             if (!roleManager.RoleExists("Guest"))
             {
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "Guest";
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+                {
+                    Name = "Guest"
+                };
                 roleManager.Create(role);
 
             }
             if (!roleManager.RoleExists("EventHolder"))
             {
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "EventHolder";
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+                {
+                    Name = "EventHolder"
+                };
                 roleManager.Create(role);
 
             }
