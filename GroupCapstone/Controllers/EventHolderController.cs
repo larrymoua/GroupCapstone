@@ -16,9 +16,13 @@ namespace GroupCapstone.Controllers
             db = new ApplicationDbContext();
         }
         // GET: EventHolder
-        public ActionResult Index()
+        public ActionResult MyEvents(string id)
         {
-            return View();
+            var CurrentUser = User.Identity.GetUserId();
+            var FoundEventHolder = db.eventHolders.Where(e => e.ApplicationUserId == CurrentUser).SingleOrDefault();
+            var FoundEvent = db.events.Where(e => e.HolderId == FoundEventHolder.HolderId).ToList();
+
+            return View(FoundEvent);
         }
 
         // GET: EventHolder/Details/5
@@ -28,23 +32,24 @@ namespace GroupCapstone.Controllers
         }
 
         // GET: EventHolder/Create
-        public ActionResult Create()
+        public ActionResult CreateEventHolder()
         {
             EventHolder eventHolder = new EventHolder();
-            return View(eventHolder);
+            return View("CreateEventHolder", eventHolder);
         }
 
         // POST: EventHolder/Create
         [HttpPost]
         public ActionResult CreateEventHolder(EventHolder eventHolder)
         {
+
             try
             {
                 // TODO: Add insert logic here
                 db.eventHolders.Add(eventHolder);
                 eventHolder.ApplicationUserId = User.Identity.GetUserId();
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("MyEvents");
             }
             catch
             {
@@ -53,7 +58,7 @@ namespace GroupCapstone.Controllers
         }
 
         // GET: EventHolder/CreateNewEvent
-        public ActionResult CreateNewEvent()
+        public ActionResult CreateNewEvent(string id)
         {
             Event newEvent = new Event();
             return View(newEvent);
@@ -62,16 +67,16 @@ namespace GroupCapstone.Controllers
         [HttpPost]
         public ActionResult CreateNewEvent(Event newEvent)
         {
-            try
-            {
-                db.events.Add(newEvent);
+            var CurrentUser = User.Identity.GetUserId();
+        
+                var eventHolderFound = db.eventHolders.Where(e => e.ApplicationUserId == CurrentUser).SingleOrDefault();
+           
+                var NewCreatedEvent = new Event { EventName = newEvent.EventName, EventDate = newEvent.EventDate, Street = newEvent.Street, City = newEvent.City, State = newEvent.State, Zip = newEvent.Zip, TicketsAvailable = newEvent.TicketsAvailable, TicketPrice = newEvent.TicketPrice, EventId = eventHolderFound.HolderId, Categories = newEvent.Categories, EventHolders = eventHolderFound, HolderId = eventHolderFound.HolderId};
+                db.events.Add(NewCreatedEvent);
                 db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+                return RedirectToAction("MyEvents");
+        
+
         }
         // GET: EventHolder/Edit/5
         public ActionResult EditEventHolder(int id)
@@ -84,6 +89,7 @@ namespace GroupCapstone.Controllers
         [HttpPost]
         public ActionResult EditEventHolder(int id, EventHolder eventHolder)
         {
+
             try
             {
                 // TODO: Add update logic here
@@ -122,19 +128,30 @@ namespace GroupCapstone.Controllers
             }
         }
         public ActionResult EditEvent(int id)
-        {  
-            return View();
+        {
+            var editedEvent = db.events.Find(id);
+            return View(editedEvent);
         }
 
         // POST: EventHolder/Edit/5
         [HttpPost]
-        public ActionResult EdiEvent(int id, FormCollection collection)
+        public ActionResult EditEvent(Event events)
         {
+            var CurrentUser = User.Identity.GetUserId();
+            var FoundEventHolder = db.eventHolders.Where(e => e.ApplicationUserId == CurrentUser).SingleOrDefault();
+            var FoundEvent = db.events.Where(e => e.HolderId == FoundEventHolder.HolderId).SingleOrDefault();
             try
             {
-                // TODO: Add update logic here
+                FoundEvent.EventName = events.EventName;
+                FoundEvent.EventDate = events.EventDate;
+                FoundEvent.Street = events.Street;
+                FoundEvent.City = events.City;
+                FoundEvent.State = events.State;
+                FoundEvent.Zip = events.Zip;
+                FoundEvent.TicketsAvailable = events.TicketsAvailable;
+                FoundEvent.TicketPrice = events.TicketPrice;
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
             catch
             {

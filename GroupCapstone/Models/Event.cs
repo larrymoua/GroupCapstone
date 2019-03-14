@@ -22,12 +22,14 @@ namespace GroupCapstone.Models
         public int? Rating { get; set; }  
         public int TicketsAvailable { get; set; }
         public Decimal TicketPrice { get; set; }
+
         public string ImagePath { get; set; }
-        public int CategoryId { get; set; }
-        [ForeignKey("CategoryId")]
-        public virtual Category categories { get; set; }
+  
+        [Display(Name = "Category")]
+        public Category Categories { get; set; }
         public int HolderId { get; set; }
         [ForeignKey("HolderId")]
         public virtual EventHolder EventHolders { get; set; }
     }   
+
 }
