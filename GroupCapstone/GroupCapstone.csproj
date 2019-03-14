@@ -190,50 +190,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903131419347_Lm.cs" />
-    <Compile Include="Migrations\201903131419347_Lm.Designer.cs">
-      <DependentUpon>201903131419347_Lm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903131434405_CreatedIdentityModel.cs" />
-    <Compile Include="Migrations\201903131434405_CreatedIdentityModel.Designer.cs">
-      <DependentUpon>201903131434405_CreatedIdentityModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903131728390_newAttributes.cs" />
-    <Compile Include="Migrations\201903131728390_newAttributes.Designer.cs">
-      <DependentUpon>201903131728390_newAttributes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903131948568_zipAdding.cs" />
-    <Compile Include="Migrations\201903131948568_zipAdding.Designer.cs">
-      <DependentUpon>201903131948568_zipAdding.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903141532233_ImagePathToEvent.cs" />
-    <Compile Include="Migrations\201903141532233_ImagePathToEvent.Designer.cs">
-      <DependentUpon>201903141532233_ImagePathToEvent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903141643251_RemovePKFromBookmarks.cs" />
-    <Compile Include="Migrations\201903141643251_RemovePKFromBookmarks.Designer.cs">
-      <DependentUpon>201903141643251_RemovePKFromBookmarks.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903141646088_RemovePKFromTicket.cs" />
-    <Compile Include="Migrations\201903141646088_RemovePKFromTicket.Designer.cs">
-      <DependentUpon>201903141646088_RemovePKFromTicket.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903141442321_removeCategory.cs" />
-    <Compile Include="Migrations\201903141442321_removeCategory.Designer.cs">
-      <DependentUpon>201903141442321_removeCategory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903141452357_add-migration changeDisplayName.cs" />
-    <Compile Include="Migrations\201903141452357_add-migration changeDisplayName.Designer.cs">
-      <DependentUpon>201903141452357_add-migration changeDisplayName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903141455256_changeDisplayName.cs" />
-    <Compile Include="Migrations\201903141455256_changeDisplayName.Designer.cs">
-      <DependentUpon>201903141455256_changeDisplayName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903141505187_changeDisplayName1.cs" />
-    <Compile Include="Migrations\201903141505187_changeDisplayName1.Designer.cs">
-      <DependentUpon>201903141505187_changeDisplayName1.cs</DependentUpon>
-
+    <Compile Include="Migrations\201903142058475_thing.cs" />
+    <Compile Include="Migrations\201903142058475_thing.Designer.cs">
+      <DependentUpon>201903142058475_thing.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -335,40 +294,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903131419347_Lm.resx">
-      <DependentUpon>201903131419347_Lm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903131434405_CreatedIdentityModel.resx">
-      <DependentUpon>201903131434405_CreatedIdentityModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903131728390_newAttributes.resx">
-      <DependentUpon>201903131728390_newAttributes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903131948568_zipAdding.resx">
-      <DependentUpon>201903131948568_zipAdding.cs</DependentUpon>
-    </EmbeddedResource>
-
-    <EmbeddedResource Include="Migrations\201903141532233_ImagePathToEvent.resx">
-      <DependentUpon>201903141532233_ImagePathToEvent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903141643251_RemovePKFromBookmarks.resx">
-      <DependentUpon>201903141643251_RemovePKFromBookmarks.cs</DependentUpon>
-    </EmbeddedResource>
-  <EmbeddedResource Include="Migrations\201903141646088_RemovePKFromTicket.resx">
-    <DependentUpon>201903141646088_RemovePKFromTicket.cs</DependentUpon>
-  </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903141442321_removeCategory.resx">
-      <DependentUpon>201903141442321_removeCategory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903141452357_add-migration changeDisplayName.resx">
-      <DependentUpon>201903141452357_add-migration changeDisplayName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903141455256_changeDisplayName.resx">
-      <DependentUpon>201903141455256_changeDisplayName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903141505187_changeDisplayName1.resx">
-      <DependentUpon>201903141505187_changeDisplayName1.cs</DependentUpon>
-
+    <EmbeddedResource Include="Migrations\201903142058475_thing.resx">
+      <DependentUpon>201903142058475_thing.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

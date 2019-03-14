@@ -25,8 +25,7 @@ namespace GroupCapstone.Models
 
         public string ImagePath { get; set; }
   
-        [Display(Name = "Category")]
-        public Category Categories { get; set; }
+        public Category Category { get; set; }
         public int HolderId { get; set; }
         [ForeignKey("HolderId")]
         public virtual EventHolder EventHolders { get; set; }
