@@ -18,12 +18,13 @@ namespace GroupCapstone.Controllers
         {
             db = new ApplicationDbContext();
         }
-        public ActionResult Index()
+        public ActionResult GuestHome()
         {
             var userLoggedin = User.Identity.GetUserId();
-
-            var guests = db.guests.Where(g => g.ApplicationUserId == userLoggedin);
-            return View(guests.ToList());
+            var currentGuest = db.guests.Where(g => g.ApplicationUserId == userLoggedin).Single();
+            var eventsInZip = db.events.Where(e => e.Zip == currentGuest.Zip).ToList();
+            
+            return View(eventsInZip);
         }
 
         // GET: Guest/Details/5
@@ -39,6 +40,20 @@ namespace GroupCapstone.Controllers
                 return HttpNotFound();
             }
             return View(guest);
+        }
+
+        public ActionResult EventDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Event foundEvent = db.events.Find(id);
+            if (foundEvent == null)
+            {
+                return HttpNotFound();
+            }
+            return View(foundEvent);
         }
 
         // GET: Guest/Create
@@ -61,7 +76,7 @@ namespace GroupCapstone.Controllers
                     db.guests.Add(guest);
                     guest.ApplicationUserId = User.Identity.GetUserId();
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("GuestHome");
                 }
 
             }
@@ -101,7 +116,7 @@ namespace GroupCapstone.Controllers
 
                 db.SaveChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("GuestHome");
             }
             catch
             {
@@ -123,7 +138,7 @@ namespace GroupCapstone.Controllers
             {
                 // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("GuestHome");
             }
             catch
             {
