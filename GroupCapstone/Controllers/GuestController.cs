@@ -22,11 +22,24 @@ namespace GroupCapstone.Controllers
         {
             var userLoggedin = User.Identity.GetUserId();
             var currentGuest = db.guests.Where(g => g.ApplicationUserId == userLoggedin).Single();
+            var currentDate = DateTime.Now;            
             var eventsInZip = db.events.Where(e => e.Zip == currentGuest.Zip).ToList();
-            
+            //foreach (var foundEvent in eventsInZip)
+            //{
+            //    var eventDates = foundEvent.EventDate;
+            //}
+            //CheckIfDatesAreSameWeek(currentDate, );
+
             return View(eventsInZip);
         }
+        private bool CheckIfDatesAreSameWeek(DateTime firstDate, DateTime secondDate)
+        {
+            var calendar = System.Globalization.DateTimeFormatInfo.CurrentInfo.Calendar;
+            var d1 = firstDate.Date.AddDays(-1 * (int)calendar.GetDayOfWeek(firstDate));
+            var d2 = secondDate.Date.AddDays(-1 * (int)calendar.GetDayOfWeek(secondDate));
 
+            return d1 == d2;
+        }
         // GET: Guest/Details/5
         public ActionResult Details(int? id)
         {
