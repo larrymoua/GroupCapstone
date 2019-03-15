@@ -76,7 +76,7 @@ namespace GroupCapstone.Controllers
 
                 var NewCreatedEvent = new Event { EventName = newEvent.EventName, EventDate = newEvent.EventDate, Street = newEvent.Street, City = newEvent.City, State = newEvent.State,
                     Zip = newEvent.Zip, TicketsAvailable = newEvent.TicketsAvailable, TicketPrice = newEvent.TicketPrice, EventId = eventHolderFound.HolderId, Category = newEvent.Category,
-                    EventHolders = eventHolderFound, HolderId = eventHolderFound.HolderId };
+                    EventHolders = eventHolderFound, HolderId = eventHolderFound.HolderId, ImagePath = newEvent.ImagePath};
                 db.events.Add(NewCreatedEvent);
                 db.SaveChanges();
                 return RedirectToAction("MyEvents");

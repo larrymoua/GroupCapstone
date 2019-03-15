@@ -255,10 +255,15 @@
     <Compile Include="Migrations\201903141931039_update.Designer.cs">
       <DependentUpon>201903141931039_update.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903142045040_Comments-Feature-Added.cs" />
+    <Compile Include="Migrations\201903142045040_Comments-Feature-Added.Designer.cs">
+      <DependentUpon>201903142045040_Comments-Feature-Added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Bookmarks.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventHolder.cs" />
     <Compile Include="Models\Guest.cs" />
@@ -339,8 +344,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\EventHolder\" />
-	   <Folder Include="Views\Event\" />
+    <Folder Include="Views\Event\" />
     <Folder Include="Views\Roles\" />
     <Folder Include="Views\Users\" />
   </ItemGroup>
@@ -405,6 +409,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903141931039_update.resx">
       <DependentUpon>201903141931039_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903142045040_Comments-Feature-Added.resx">
+      <DependentUpon>201903142045040_Comments-Feature-Added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
