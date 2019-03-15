@@ -9,7 +9,9 @@ namespace GroupCapstone.Controllers
 {
     public class EventController : Controller
     {
+        ApplicationDbContext db = new ApplicationDbContext();
         // GET: Event
+
         public ActionResult Index()
         {
             return View();
@@ -29,12 +31,13 @@ namespace GroupCapstone.Controllers
 
         // POST: Event/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(int id)
         {
+            var events = db.events.Include("Comments").Where(g => g.EventId == id).SingleOrDefault();
             try
             {
                 // TODO: Add insert logic here
-                return RedirectToAction("Index");
+                return RedirectToAction("comment");
             }
             catch
             {

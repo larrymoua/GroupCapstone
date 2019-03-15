@@ -75,6 +75,7 @@ namespace GroupCapstone.Controllers
             {
       
 
+
                 var NewCreatedEvent = new Event
                 {
                     EventName = newEvent.EventName,
@@ -90,6 +91,7 @@ namespace GroupCapstone.Controllers
                     EventHolders = eventHolderFound,
                     HolderId = eventHolderFound.HolderId
                 };
+
 
                 db.events.Add(NewCreatedEvent);
                 db.SaveChanges();
