@@ -3,7 +3,7 @@ namespace GroupCapstone.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class changeDisplayName3 : DbMigration
+    public partial class CommentsFeatureAdded : DbMigration
     {
         public override void Up()
         {
