@@ -34,5 +34,7 @@ namespace GroupCapstone.Models
         public DbSet<Ticket> tickets { get; set; }
         public DbSet<Bookmarks> bookmarks { get; set; }
         public DbSet<Guest> guests { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
     }
 }
