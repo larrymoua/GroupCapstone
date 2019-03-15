@@ -98,6 +98,13 @@
             @Html.DisplayFor(model => model.Category)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.State)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.State)
+        </dd>
+
     </dl>
     <meta charset="utf-8">
     <style>
@@ -113,16 +120,16 @@
     <script>
         var map;
         function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: -34.397, lng: 150.644 },
-                zoom: 15
-            });
+                // The location of Uluru
+                var uluru = { lat: @ViewBag.lat, lng: @ViewBag.Long };
+                // The map, centered at Uluru
+                var map = new google.maps.Map(
+                    document.getElementById('map'), { zoom: 15, center: uluru });
+                // The marker, positioned at Uluru
+                var marker = new google.maps.Marker({ position: uluru, map: map });
         }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBA-VL6jTbTGJNW77AsuCuLRVwXB2wKGo&callback=initMap"
             async defer></script> 
     </div>
-    <p>
-        @Html.ActionLink("Edit", "EditEvent", new { id = Model.EventId }) |
-        @Html.ActionLink("Back to List", "MyEvents")
-    </p>
+

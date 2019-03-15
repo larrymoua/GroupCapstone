@@ -18,14 +18,28 @@ namespace GroupCapstone.Controllers
         {
             db = new ApplicationDbContext();
         }
-        public ActionResult Index()
+        public ActionResult GuestHome()
         {
             var userLoggedin = User.Identity.GetUserId();
+            var currentGuest = db.guests.Where(g => g.ApplicationUserId == userLoggedin).Single();
+            var currentDate = DateTime.Now;            
+            var eventsInZip = db.events.Where(e => e.Zip == currentGuest.Zip).ToList();
+            //foreach (var foundEvent in eventsInZip)
+            //{
+            //    var eventDates = foundEvent.EventDate;
+            //}
+            //CheckIfDatesAreSameWeek(currentDate, );
 
-            var guests = db.guests.Where(g => g.ApplicationUserId == userLoggedin);
-            return View(guests.ToList());
+            return View(eventsInZip);
         }
+        private bool CheckIfDatesAreSameWeek(DateTime firstDate, DateTime secondDate)
+        {
+            var calendar = System.Globalization.DateTimeFormatInfo.CurrentInfo.Calendar;
+            var d1 = firstDate.Date.AddDays(-1 * (int)calendar.GetDayOfWeek(firstDate));
+            var d2 = secondDate.Date.AddDays(-1 * (int)calendar.GetDayOfWeek(secondDate));
 
+            return d1 == d2;
+        }
         // GET: Guest/Details/5
         public ActionResult Details(int? id)
         {
@@ -39,6 +53,20 @@ namespace GroupCapstone.Controllers
                 return HttpNotFound();
             }
             return View(guest);
+        }
+
+        public ActionResult EventDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Event foundEvent = db.events.Find(id);
+            if (foundEvent == null)
+            {
+                return HttpNotFound();
+            }
+            return View(foundEvent);
         }
 
         // GET: Guest/Create
@@ -61,7 +89,7 @@ namespace GroupCapstone.Controllers
                     db.guests.Add(guest);
                     guest.ApplicationUserId = User.Identity.GetUserId();
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("GuestHome");
                 }
 
             }
@@ -101,7 +129,7 @@ namespace GroupCapstone.Controllers
 
                 db.SaveChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("GuestHome");
             }
             catch
             {
@@ -123,7 +151,7 @@ namespace GroupCapstone.Controllers
             {
                 // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("GuestHome");
             }
             catch
             {
