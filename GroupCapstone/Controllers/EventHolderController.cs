@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using static System.Net.WebRequestMethods;
+using System.ComponentModel;
 
 namespace GroupCapstone.Controllers
 {
@@ -36,15 +37,15 @@ namespace GroupCapstone.Controllers
         {
             var foundEvent = db.events.Find(id);
 
-     
             using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
             {
+                var states = Extensions.GetDescription(foundEvent.State);
                 client.BaseAddress = new Uri("Https://maps.googleapis.com/maps/api/geocode/");
-                HttpResponseMessage response = client.GetAsync("json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyBBA-VL6jTbTGJNW77AsuCuLRVwXB2wKGo").Result;
+                HttpResponseMessage response = client.GetAsync($"json?address={foundEvent.Street}+{foundEvent.Zip},+{foundEvent.City},+{states}&key=AIzaSyBBA-VL6jTbTGJNW77AsuCuLRVwXB2wKGo").Result;
                 response.EnsureSuccessStatusCode();
                 var result = response.Content.ReadAsStringAsync().Result;
                 RootObject root = JsonConvert.DeserializeObject<RootObject>(result);
-                //dynamic json = JValue.Parse(result);
+           
                 double Latitude = 0.0;
                 double Longitude = 0.0;
                 foreach (var item in root.results)
@@ -103,8 +104,8 @@ namespace GroupCapstone.Controllers
             var eventHolderFound = db.eventHolders.Where(e => e.ApplicationUserId == CurrentUser).SingleOrDefault();
             try
             {
-      
 
+   
 
                 var NewCreatedEvent = new Event
                 {
@@ -119,7 +120,9 @@ namespace GroupCapstone.Controllers
                     EventId = eventHolderFound.HolderId,
                     Category = newEvent.Category,
                     EventHolders = eventHolderFound,
-                    HolderId = eventHolderFound.HolderId
+                    HolderId = eventHolderFound.HolderId,
+                    ImagePath = newEvent.ImagePath
+                    
                 };
 
 

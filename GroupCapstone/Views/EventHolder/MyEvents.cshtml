@@ -29,9 +29,6 @@
             @Html.DisplayFor(modelItem => item.EventDate)
         </td>
         <td>
-            <img src="@Url.Content(item.ImagePath)" />
-        </td>
-        <td>
             @Html.ActionLink("Edit", "EditEvent", new { id = item.EventId }) |
             @Html.ActionLink("Details", "Details", new { id = item.EventId }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.EventId })

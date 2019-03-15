@@ -25,6 +25,17 @@
             @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+                @Html.DropDownListFor(m => m.State,
+                                    new SelectList(Enum.GetValues(typeof(States))),
+                                    "Select State")
+                @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+        </div>
+    </div>
+  
     <div class="form-group">
         @Html.LabelFor(model => model.EventName, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
