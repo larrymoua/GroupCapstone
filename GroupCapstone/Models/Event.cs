@@ -32,6 +32,7 @@ namespace GroupCapstone.Models
         [Required]
         public decimal TicketPrice { get; set; }
         public string ImagePath { get; set; }
+
         public int HolderId { get; set; }
         [ForeignKey("HolderId")]
         public virtual EventHolder EventHolders { get; set; }
