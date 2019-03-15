@@ -73,9 +73,6 @@ namespace GroupCapstone.Controllers
             var eventHolderFound = db.eventHolders.Where(e => e.ApplicationUserId == CurrentUser).SingleOrDefault();
             try
             {
-      
-
-
                 var NewCreatedEvent = new Event
                 {
                     EventName = newEvent.EventName,
@@ -91,7 +88,6 @@ namespace GroupCapstone.Controllers
                     EventHolders = eventHolderFound,
                     HolderId = eventHolderFound.HolderId
                 };
-
 
                 db.events.Add(NewCreatedEvent);
                 db.SaveChanges();
