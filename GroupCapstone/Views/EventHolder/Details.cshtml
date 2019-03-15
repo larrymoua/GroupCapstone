@@ -1,8 +1,6 @@
 ﻿@model GroupCapstone.Models.Event
 
-@{
-    ViewBag.Title = "Details";
-}
+@ViewBag.Title = "Details";
 
 <h2>Details</h2>
 
@@ -106,7 +104,7 @@
         var map;
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: -34.397, lng: 150.644 },
+                center: { lat: @ViewBag.lat, lng: @ViewBag.Long },
                 zoom: 15
             });
         }
@@ -114,7 +112,4 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBA-VL6jTbTGJNW77AsuCuLRVwXB2wKGo&callback=initMap"
             async defer></script> 
     </div>
-    <p>
-        @Html.ActionLink("Edit", "EditEvent", new { id = Model.EventId }) |
-        @Html.ActionLink("Back to List", "MyEvents")
-    </p>
+
