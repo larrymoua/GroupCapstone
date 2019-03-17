@@ -73,6 +73,13 @@ namespace GroupCapstone.Controllers
             return View(foundEvent);
         }
 
+        public ActionResult MyPurchasedTickets()
+        {
+            var userId = User.Identity.GetUserId();
+            Guest guest = db.guests.Where(g => g.ApplicationUserId == userId).Single();
+            var eventTix = db.tickets.Where(t => t.GuestId == guest.GuestId).ToList();
+            return View(eventTix);
+        }
         // GET: Guest/Create
         public ActionResult Create()
         {
