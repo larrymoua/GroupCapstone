@@ -1,11 +1,15 @@
 ﻿using GroupCapstone.Models;
 using Microsoft.AspNet.Identity;
+using Stripe;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
+
+
 
 namespace GroupCapstone.Controllers
 {
@@ -61,7 +65,7 @@ namespace GroupCapstone.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event foundEvent = db.events.Find(id);
+            var foundEvent = db.events.Find(id);
             if (foundEvent == null)
             {
                 return HttpNotFound();
