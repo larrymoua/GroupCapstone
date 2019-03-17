@@ -192,18 +192,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903142045040_Comments-Feature-Added.cs" />
-    <Compile Include="Migrations\201903142045040_Comments-Feature-Added.Designer.cs">
-      <DependentUpon>201903142045040_Comments-Feature-Added.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903151606030_DbSetCommentAndKeyForComment.cs" />
-    <Compile Include="Migrations\201903151606030_DbSetCommentAndKeyForComment.Designer.cs">
-      <DependentUpon>201903151606030_DbSetCommentAndKeyForComment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903152057101_work!.cs" />
-    <Compile Include="Migrations\201903152057101_work!.Designer.cs">
-      <DependentUpon>201903152057101_work!.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Bookmarks.cs" />
@@ -309,17 +297,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903142045040_Comments-Feature-Added.resx">
-      <DependentUpon>201903142045040_Comments-Feature-Added.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903151606030_DbSetCommentAndKeyForComment.resx">
-      <DependentUpon>201903151606030_DbSetCommentAndKeyForComment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903152057101_work!.resx">
-      <DependentUpon>201903152057101_work!.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
