@@ -71,7 +71,8 @@ namespace GroupCapstone.Controllers
 
         public ActionResult MyPurchasedTickets()
         {
-            Guest guest = db.guests.Where(g => g.ApplicationUserId == (User.Identity.GetUserId())).Single();
+            var userId = User.Identity.GetUserId();
+            Guest guest = db.guests.Where(g => g.ApplicationUserId == userId).Single();
             var eventTix = db.tickets.Where(t => t.GuestId == guest.GuestId).ToList();
             return View(eventTix);
         }

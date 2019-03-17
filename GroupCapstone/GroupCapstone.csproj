@@ -273,6 +273,7 @@
     <Content Include="Views\EventHolder\Details.cshtml" />
     <Content Include="Views\Guest\GuestHome.cshtml" />
     <Content Include="Views\Guest\EventDetails.cshtml" />
+    <Content Include="Views\Guest\MyPurchasedTickets.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Guest\Create.cshtml" />

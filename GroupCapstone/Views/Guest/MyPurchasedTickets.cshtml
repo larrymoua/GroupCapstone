@@ -1,0 +1,32 @@
+﻿@model IEnumerable<GroupCapstone.Models.Ticket>
+
+@{
+    ViewBag.Title = "MyPurchasedTickets";
+}
+
+<h2>MyPurchasedTickets</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Events.EventName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Events.EventDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Events.EventName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Events.EventDate)
+        </td>
+    </tr>
+}
+
+</table>
