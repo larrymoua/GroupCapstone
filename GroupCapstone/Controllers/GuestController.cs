@@ -1,12 +1,16 @@
 ﻿using GroupCapstone.Models;
 using Microsoft.AspNet.Identity;
+using Stripe;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Configuration;
 using System.Linq;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
+
+
 
 namespace GroupCapstone.Controllers
 {
@@ -26,18 +30,18 @@ namespace GroupCapstone.Controllers
             var currentDate = DateTime.Now;
             int currentWeek = GetWeekNumber(currentDate);
             var eventsInZip = db.events.Where(e => e.Zip == currentGuest.Zip).ToList();        
-            List<Event> eventsThisWeek = new List<Event> { };
+            //List<Event> eventsThisWeek = new List<Event> { };
 
-            foreach (var foundEvent in eventsInZip)
-            {
-                int eventWeek = GetWeekNumber(foundEvent.EventDate);
-                if (eventWeek == currentWeek)
-                {
-                    eventsThisWeek.Add(foundEvent);
-                }
-            }
+            //foreach (var foundEvent in eventsInZip)
+            //{
+            //    int eventWeek = GetWeekNumber(foundEvent.EventDate);
+            //    if (eventWeek == currentWeek)
+            //    {
+            //        eventsThisWeek.Add(foundEvent);
+            //    }
+            //}
 
-            return View(eventsThisWeek);
+            return View(/*eventsThisWeek*/);
         }
 
         public int GetWeekNumber(DateTime date)
@@ -78,7 +82,7 @@ namespace GroupCapstone.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event foundEvent = db.events.Find(id);
+            var foundEvent = db.events.Find(id);
             if (foundEvent == null)
             {
                 return HttpNotFound();
@@ -86,6 +90,13 @@ namespace GroupCapstone.Controllers
             return View(foundEvent);
         }
 
+        public ActionResult MyPurchasedTickets()
+        {
+            var userId = User.Identity.GetUserId();
+            Guest guest = db.guests.Where(g => g.ApplicationUserId == userId).Single();
+            var eventTix = db.tickets.Where(t => t.GuestId == guest.GuestId).ToList();
+            return View(eventTix);
+        }
         // GET: Guest/Create
         public ActionResult Create()
         {
