@@ -30,16 +30,6 @@ namespace GroupCapstone.Controllers
             var currentDate = DateTime.Now;
             int currentWeek = GetWeekNumber(currentDate);
             var eventsInZip = db.events.Where(e => e.Zip == currentGuest.Zip).ToList();
-            //List<Models.Event> eventsThisWeek = new List<Models.Event> { };
-
-            //foreach (var foundEvent in eventsInZip)
-            //{
-            //    int eventWeek = GetWeekNumber(foundEvent.EventDate);
-            //    if (eventWeek == currentWeek)
-            //    {
-            //        eventsThisWeek.Add(foundEvent);
-            //    }
-            //}
           var typeList = Enum.GetValues(typeof(Category))
           .Cast<Category>()
           .Select(t => new AcessClass
