@@ -295,6 +295,7 @@
     <Content Include="Views\Cart\Create.cshtml" />
     <Content Include="Views\Cart\OrderStatus.cshtml" />
     <Content Include="Views\Guest\MyPurchasedTickets.cshtml" />
+    <Content Include="Views\Guest\Filter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Guest\Create.cshtml" />
