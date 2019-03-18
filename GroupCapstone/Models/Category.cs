@@ -12,4 +12,8 @@ namespace GroupCapstone.Models
         Networking,
         Other
     }
+    public class AcessClass
+    {
+        public Category Category { get; set; }
+    }
 }

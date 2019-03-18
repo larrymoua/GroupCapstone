@@ -30,18 +30,23 @@ namespace GroupCapstone.Controllers
             var currentDate = DateTime.Now;
             int currentWeek = GetWeekNumber(currentDate);
             var eventsInZip = db.events.Where(e => e.Zip == currentGuest.Zip).ToList();
-            List<Models.Event> eventsThisWeek = new List<Models.Event> { };
+          var typeList = Enum.GetValues(typeof(Category))
+          .Cast<Category>()
+          .Select(t => new AcessClass
+          {
+              Category = ((Category)t),
 
-            foreach (var foundEvent in eventsInZip)
-            {
-                int eventWeek = GetWeekNumber(foundEvent.EventDate);
-                if (eventWeek == currentWeek)
-                {
-                    eventsThisWeek.Add(foundEvent);
-                }
-            }
+          });
+                ViewBag.ListData = typeList;
+            return View(eventsInZip);
+        }
+        public ActionResult Filter(string id)
+        {
+            var CurrentUser = User.Identity.GetUserId();
+            var guestFound = db.guests.Where(g => g.ApplicationUserId == CurrentUser).SingleOrDefault();
 
-            return View(eventsThisWeek);
+            var filteredEvents = db.events.Where(e => e.Category.ToString() == id && e.Zip == guestFound.Zip).ToList();
+            return View(filteredEvents);
         }
 
         public int GetWeekNumber(DateTime date)
@@ -85,7 +90,14 @@ namespace GroupCapstone.Controllers
         {
             var userId = User.Identity.GetUserId();
             Guest guest = db.guests.Where(g => g.ApplicationUserId == userId).Single();
-            var eventTix = db.tickets.Where(t => t.GuestId == guest.GuestId).ToList();
+            var tickets = db.tickets.Where(t => t.GuestId == guest.GuestId).ToList();
+            List<Models.Event> eventTix = new List<Models.Event>();
+            foreach (var tix in tickets)
+            {
+                var tempEvent = db.events.Where(e => e.EventId == tix.EventId).SingleOrDefault();
+                eventTix.Add(tempEvent);
+            }
+            
             return View(eventTix);
         }
         // GET: Guest/Create

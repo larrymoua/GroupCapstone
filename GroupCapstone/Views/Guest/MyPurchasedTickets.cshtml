@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GroupCapstone.Models.Ticket>
+﻿@model IEnumerable<GroupCapstone.Models.Event>
 
 @{
     ViewBag.Title = "MyPurchasedTickets";
@@ -10,21 +10,20 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Events.EventName)
+            @Html.DisplayNameFor(model => model.EventName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Events.EventDate)
+            @Html.DisplayNameFor(model => model.EventDate)
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Events.EventName)
+            @Html.DisplayFor(modelItem => item.EventName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Events.EventDate)
+            @Html.DisplayFor(modelItem => item.EventDate)
         </td>
     </tr>
 }

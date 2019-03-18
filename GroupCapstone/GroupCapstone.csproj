@@ -204,26 +204,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903180053579_Migration1.cs" />
-    <Compile Include="Migrations\201903180053579_Migration1.Designer.cs">
-      <DependentUpon>201903180053579_Migration1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903181546172_ListOfRatingsToEvent.cs" />
-    <Compile Include="Migrations\201903181546172_ListOfRatingsToEvent.Designer.cs">
-      <DependentUpon>201903181546172_ListOfRatingsToEvent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903181551524_NullableListOfIntEvent.cs" />
-    <Compile Include="Migrations\201903181551524_NullableListOfIntEvent.Designer.cs">
-      <DependentUpon>201903181551524_NullableListOfIntEvent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903181945135_AddedRatingModel.cs" />
-    <Compile Include="Migrations\201903181945135_AddedRatingModel.Designer.cs">
-      <DependentUpon>201903181945135_AddedRatingModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903182004285_RemovedNullFromRating.cs" />
-    <Compile Include="Migrations\201903182004285_RemovedNullFromRating.Designer.cs">
-      <DependentUpon>201903182004285_RemovedNullFromRating.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Bookmarks.cs" />
@@ -312,6 +292,8 @@
     <Content Include="Views\Cart\Create.cshtml" />
     <Content Include="Views\Cart\OrderStatus.cshtml" />
     <Content Include="Views\Guest\GiveRating.cshtml" />
+    <Content Include="Views\Guest\MyPurchasedTickets.cshtml" />
+    <Content Include="Views\Guest\Filter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Guest\Create.cshtml" />
@@ -336,23 +318,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903180053579_Migration1.resx">
-      <DependentUpon>201903180053579_Migration1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903181546172_ListOfRatingsToEvent.resx">
-      <DependentUpon>201903181546172_ListOfRatingsToEvent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903181551524_NullableListOfIntEvent.resx">
-      <DependentUpon>201903181551524_NullableListOfIntEvent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903181945135_AddedRatingModel.resx">
-      <DependentUpon>201903181945135_AddedRatingModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903182004285_RemovedNullFromRating.resx">
-      <DependentUpon>201903182004285_RemovedNullFromRating.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
