@@ -36,5 +36,7 @@ namespace GroupCapstone.Models
         public DbSet<Guest> guests { get; set; }
 
         public DbSet<Comment> Comments { get; set; }
+
+        public DbSet<Ratings> ratings { get; set; }
     }
 }

@@ -215,6 +215,7 @@
     <Compile Include="Models\Guest.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Ratings.cs" />
     <Compile Include="Models\States.cs" />
     <Compile Include="Models\Ticket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -290,6 +291,7 @@
     <Content Include="Views\Guest\Charge.cshtml" />
     <Content Include="Views\Cart\Create.cshtml" />
     <Content Include="Views\Cart\OrderStatus.cshtml" />
+    <Content Include="Views\Guest\GiveRating.cshtml" />
     <Content Include="Views\Guest\MyPurchasedTickets.cshtml" />
     <Content Include="Views\Guest\Filter.cshtml" />
   </ItemGroup>

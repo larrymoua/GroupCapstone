@@ -12,6 +12,7 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using static System.Net.WebRequestMethods;
 using System.ComponentModel;
+using System.Net.Mail;
 
 namespace GroupCapstone.Controllers
 {
@@ -117,7 +118,7 @@ namespace GroupCapstone.Controllers
                     EventId = eventHolderFound.HolderId,
                     Category = newEvent.Category,
                     EventHolders = eventHolderFound,
-                    HolderId = eventHolderFound.HolderId,
+                    HolderId = eventHolderFound.HolderId,                                     
                     ImagePath = newEvent.ImagePath                   
                 };
 
@@ -216,6 +217,11 @@ namespace GroupCapstone.Controllers
             {
                 return View();
             }
+        }
+
+        public void SendEmail(string email, Guest guest)
+        {
+            
         }
     }
 }

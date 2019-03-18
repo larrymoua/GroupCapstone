@@ -30,6 +30,7 @@ namespace GroupCapstone.Controllers
             var currentDate = DateTime.Now;
             int currentWeek = GetWeekNumber(currentDate);
             var eventsInZip = db.events.Where(e => e.Zip == currentGuest.Zip).ToList();
+
             List<Models.Event> eventsThisWeek = new List<Models.Event> { };
 
             foreach (var foundEvent in eventsInZip)
@@ -40,6 +41,7 @@ namespace GroupCapstone.Controllers
                     eventsThisWeek.Add(foundEvent);
                 }
             }
+
             var typeList = Enum.GetValues(typeof(Category))
           .Cast<Category>()
           .Select(t => new AcessClass
@@ -48,6 +50,7 @@ namespace GroupCapstone.Controllers
 
           });
                 ViewBag.ListData = typeList;
+
             return View(eventsThisWeek);
         }
         public ActionResult Filter(string id)
@@ -64,15 +67,6 @@ namespace GroupCapstone.Controllers
             CultureInfo currentCulture = CultureInfo.CurrentCulture;
             int weekNumber = currentCulture.Calendar.GetWeekOfYear(date, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
             return weekNumber;
-        }
-            
-        private bool CheckIfDatesAreSameWeek(DateTime firstDate, DateTime secondDate)
-        {
-            var calendar = System.Globalization.DateTimeFormatInfo.CurrentInfo.Calendar;
-            var d1 = firstDate.Date.AddDays(-1 * (int)calendar.GetDayOfWeek(firstDate));
-            var d2 = secondDate.Date.AddDays(-1 * (int)calendar.GetDayOfWeek(secondDate));
-
-            return d1 == d2;
         }
 
         
@@ -149,6 +143,50 @@ namespace GroupCapstone.Controllers
             }
             return View(guest);
         }
+
+        public ActionResult GiveRating(int id)
+        {
+            try
+            {
+                var ratedEvent = db.events.Where(e => e.EventId == id).SingleOrDefault();
+                return View(ratedEvent);
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GiveRating(int id, Models.Event ratedEvent)
+        {
+            var thisEvent = db.events.Where(e => e.EventId == id).SingleOrDefault();
+            if (DateTime.Now > thisEvent.EventDate)
+            {
+                Ratings rating = new Ratings();
+                rating.Rating = ratedEvent.Rating;
+                rating.EventId = thisEvent.EventId;
+                db.ratings.Add(rating);
+                db.SaveChanges();
+                var eventsRatings = db.ratings.Where(r => r.EventId == id).ToList();
+                List<int> selectedRatings = new List<int>();
+                foreach (var filteredRating in eventsRatings)
+                {
+                    selectedRatings.Add(filteredRating.Rating);
+                }
+                int sum = selectedRatings.Sum();
+                int averageRating = sum / selectedRatings.Count;
+                thisEvent.Rating = averageRating;
+                
+             
+                ratedEvent.Rating = thisEvent.Rating;
+
+                db.SaveChanges();
+
+            }
+            return RedirectToAction("GuestHome");
+        }
+        
 
         // GET: Guest/Edit/5
         public ActionResult Edit(int id)
