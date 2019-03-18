@@ -104,9 +104,6 @@ namespace GroupCapstone.Controllers
             var eventHolderFound = db.eventHolders.Where(e => e.ApplicationUserId == CurrentUser).SingleOrDefault();
             try
             {
-
-   
-
                 var NewCreatedEvent = new Event
                 {
                     EventName = newEvent.EventName,
@@ -121,8 +118,7 @@ namespace GroupCapstone.Controllers
                     Category = newEvent.Category,
                     EventHolders = eventHolderFound,
                     HolderId = eventHolderFound.HolderId,
-                    ImagePath = newEvent.ImagePath
-                    
+                    ImagePath = newEvent.ImagePath                   
                 };
 
 

@@ -11,6 +11,7 @@
 </p>
 <table class="table">
     <tr>
+        <th></th>
         <th>
             @Html.DisplayNameFor(model => model.EventName)
         </th>
@@ -22,6 +23,9 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            <img src="@Url.Content(item.ImagePath)" />
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.EventName)
         </td>

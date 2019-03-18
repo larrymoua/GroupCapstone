@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -22,16 +23,30 @@ namespace GroupCapstone.Controllers
         {
             var userLoggedin = User.Identity.GetUserId();
             var currentGuest = db.guests.Where(g => g.ApplicationUserId == userLoggedin).Single();
-            var currentDate = DateTime.Now;            
-            var eventsInZip = db.events.Where(e => e.Zip == currentGuest.Zip).ToList();
-            //foreach (var foundEvent in eventsInZip)
-            //{
-            //    var eventDates = foundEvent.EventDate;
-            //}
-            //CheckIfDatesAreSameWeek(currentDate, );
+            var currentDate = DateTime.Now;
+            int currentWeek = GetWeekNumber(currentDate);
+            var eventsInZip = db.events.Where(e => e.Zip == currentGuest.Zip).ToList();        
+            List<Event> eventsThisWeek = new List<Event> { };
 
-            return View(eventsInZip);
+            foreach (var foundEvent in eventsInZip)
+            {
+                int eventWeek = GetWeekNumber(foundEvent.EventDate);
+                if (eventWeek == currentWeek)
+                {
+                    eventsThisWeek.Add(foundEvent);
+                }
+            }
+
+            return View(eventsThisWeek);
         }
+
+        public int GetWeekNumber(DateTime date)
+        {
+            CultureInfo currentCulture = CultureInfo.CurrentCulture;
+            int weekNumber = currentCulture.Calendar.GetWeekOfYear(date, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
+            return weekNumber;
+        }
+            
         private bool CheckIfDatesAreSameWeek(DateTime firstDate, DateTime secondDate)
         {
             var calendar = System.Globalization.DateTimeFormatInfo.CurrentInfo.Calendar;
@@ -40,6 +55,8 @@ namespace GroupCapstone.Controllers
 
             return d1 == d2;
         }
+
+        
         // GET: Guest/Details/5
         public ActionResult Details(int? id)
         {

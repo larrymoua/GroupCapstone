@@ -9,6 +9,7 @@
 
 <table class="table">
     <tr>
+        <th>Image</th>
         <th>
             @Html.DisplayNameFor(model => model.EventName)
         </th>
@@ -39,6 +40,9 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            <img src="@Url.Content(item.ImagePath)" />
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.EventName)
         </td>
         <td>
@@ -63,7 +67,7 @@
             @Html.DisplayFor(modelItem => item.TicketPrice)
         </td>
         <td>
-            @Html.ActionLink("Details", "EventDetails", new { id=item.EventId })
+            @Html.ActionLink("Details", "EventDetails", new { id = item.EventId })
         </td>
     </tr>
 }
