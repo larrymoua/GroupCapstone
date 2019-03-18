@@ -94,7 +94,14 @@ namespace GroupCapstone.Controllers
         {
             var userId = User.Identity.GetUserId();
             Guest guest = db.guests.Where(g => g.ApplicationUserId == userId).Single();
-            var eventTix = db.tickets.Where(t => t.GuestId == guest.GuestId).ToList();
+            var tickets = db.tickets.Where(t => t.GuestId == guest.GuestId).ToList();
+            List<Models.Event> eventTix = new List<Models.Event>();
+            foreach (var tix in tickets)
+            {
+                var tempEvent = db.events.Where(e => e.EventId == tix.EventId).SingleOrDefault();
+                eventTix.Add(tempEvent);
+            }
+            
             return View(eventTix);
         }
         // GET: Guest/Create
