@@ -47,9 +47,12 @@ namespace GroupCapstone.Controllers
             model.ChargeId = charge.Id;
 
             var CurrentUser = User.Identity.GetUserId();
-            var foundEvent = db.events.Where(e => e.EventId == events.EventId).SingleOrDefault();
-            
+            var foundEvent = db.events.Where(e => e.EventId == events.EventId).SingleOrDefault();            
             var guestFound = db.guests.Where(e => e.ApplicationUserId == CurrentUser).SingleOrDefault();
+
+            var purchasedTicket = new Ticket { EventId = foundEvent.EventId, GuestId = guestFound.GuestId};
+            db.tickets.Add(purchasedTicket);
+            db.SaveChanges();
 
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress($"{foundEvent.EventName}", "sweepsstackproject@gmail.com"));

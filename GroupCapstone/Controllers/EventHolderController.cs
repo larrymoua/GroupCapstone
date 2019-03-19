@@ -62,12 +62,13 @@ namespace GroupCapstone.Controllers
                     Longitude = item.geometry.location.lng;
                     ViewBag.Lat =Latitude.ToString();
                     ViewBag.Long = Longitude.ToString();
-                }
-              
+                }             
             }
-
-
-
+            var ticketsBought = db.tickets.Where(e => e.EventId == foundEvent.EventId).ToList();
+            var bookmarks = db.bookmarks.Where(b => b.EventId == foundEvent.EventId);
+            ViewBag.PurchasedAdmission = ticketsBought.Count();
+            ViewBag.BookMarkerForEvents = bookmarks.Count();
+            ViewBag.TicketsAvailable = foundEvent.TicketsAvailable - ticketsBought.Count;
             return View(foundEvent);
         }
 

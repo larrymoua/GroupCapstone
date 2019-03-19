@@ -9,8 +9,8 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-
-
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace GroupCapstone.Controllers
 {
@@ -105,15 +105,30 @@ namespace GroupCapstone.Controllers
 
         public ActionResult EventDetails(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             var foundEvent = db.events.Find(id);
-            if (foundEvent == null)
+
+            using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
             {
-                return HttpNotFound();
+                var states = Extensions.GetDescription(foundEvent.State);
+                client.BaseAddress = new Uri("Https://maps.googleapis.com/maps/api/geocode/");
+                HttpResponseMessage response = client.GetAsync($"json?address={foundEvent.Street}+{foundEvent.Zip},+{foundEvent.City},+{states}&key=AIzaSyBBA-VL6jTbTGJNW77AsuCuLRVwXB2wKGo").Result;
+                response.EnsureSuccessStatusCode();
+                var result = response.Content.ReadAsStringAsync().Result;
+                RootObject root = JsonConvert.DeserializeObject<RootObject>(result);
+
+                double Latitude = 0.0;
+                double Longitude = 0.0;
+                foreach (var item in root.results)
+                {
+                    Latitude = item.geometry.location.lat;
+                    Longitude = item.geometry.location.lng;
+                    ViewBag.Lat = Latitude.ToString();
+                    ViewBag.Long = Longitude.ToString();
+                }
+
             }
+
+
             return View(foundEvent);
         }
 

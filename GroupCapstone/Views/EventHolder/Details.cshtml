@@ -9,6 +9,15 @@
 <div>
     <h4>Event</h4>
     <hr />
+    <h3>
+        Event Bookmarks : @ViewBag.BookMarkerForEvents
+    </h3>
+    <h3>
+        Event Purchased Tickets : @ViewBag.PurchasedAdmission
+    </h3>
+    <h3>
+        Available Tickets : @ViewBag.TicketsAvailable
+    </h3>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.EventName)
@@ -78,13 +87,13 @@
             @Html.DisplayNameFor(model => model.ImagePath)
         </dt>
         @*
-        <dd>
-            @Html.DisplayFor(model => model.Comment)
-        </dd>
-        
-        <dt>
-            @Html.DisplayNameFor(model => model.Comment)
-        </dt>*@
+            <dd>
+                @Html.DisplayFor(model => model.Comment)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Comment)
+            </dt>*@
 
         <dd>
             @Html.DisplayFor(model => model.ImagePath)
@@ -121,7 +130,7 @@
         var map;
         function initMap() {
                 // The location of Uluru
-                var location = { lat: @ViewBag.lat, lng: @ViewBag.Long };
+                var uluru = { lat: @ViewBag.lat, lng: @ViewBag.Long };
                 // The map, centered at Uluru
                 var map = new google.maps.Map(
                     document.getElementById('map'), { zoom: 15, center: uluru });
@@ -130,8 +139,8 @@
         }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBA-VL6jTbTGJNW77AsuCuLRVwXB2wKGo&callback=initMap"
-            async defer></script> 
-    </div>
+            async defer></script>
+</div>
 
 
 
