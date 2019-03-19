@@ -4,11 +4,14 @@
     ViewBag.Title = "MyEvents";
 }
 
-<h2>MyEvents</h2>
+<h2>My Events</h2>
 
 <p>
     @Html.ActionLink("Create New", "CreateNewEvent")
 </p>
+<h5>
+    My Rating : @ViewBag.HolderAvg
+</h5>
 <table class="table">
     <tr>
         <th></th>
