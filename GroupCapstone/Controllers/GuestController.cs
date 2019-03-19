@@ -1,11 +1,16 @@
 ﻿using GroupCapstone.Models;
 using Microsoft.AspNet.Identity;
+using Stripe;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Configuration;
 using System.Linq;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
+
+
 
 namespace GroupCapstone.Controllers
 {
@@ -22,24 +27,49 @@ namespace GroupCapstone.Controllers
         {
             var userLoggedin = User.Identity.GetUserId();
             var currentGuest = db.guests.Where(g => g.ApplicationUserId == userLoggedin).Single();
-            var currentDate = DateTime.Now;            
+            var currentDate = DateTime.Now;
+            int currentWeek = GetWeekNumber(currentDate);
             var eventsInZip = db.events.Where(e => e.Zip == currentGuest.Zip).ToList();
-            //foreach (var foundEvent in eventsInZip)
-            //{
-            //    var eventDates = foundEvent.EventDate;
-            //}
-            //CheckIfDatesAreSameWeek(currentDate, );
 
-            return View(eventsInZip);
+            List<Models.Event> eventsThisWeek = new List<Models.Event> { };
+
+            foreach (var foundEvent in eventsInZip)
+            {
+                int eventWeek = GetWeekNumber(foundEvent.EventDate);
+                if (eventWeek == currentWeek)
+                {
+                    eventsThisWeek.Add(foundEvent);
+                }
+            }
+
+            var typeList = Enum.GetValues(typeof(Category))
+          .Cast<Category>()
+          .Select(t => new AcessClass
+          {
+              Category = ((Category)t),
+
+          });
+                ViewBag.ListData = typeList;
+
+            return View(eventsThisWeek);
         }
-        private bool CheckIfDatesAreSameWeek(DateTime firstDate, DateTime secondDate)
+        public ActionResult Filter(string id)
         {
-            var calendar = System.Globalization.DateTimeFormatInfo.CurrentInfo.Calendar;
-            var d1 = firstDate.Date.AddDays(-1 * (int)calendar.GetDayOfWeek(firstDate));
-            var d2 = secondDate.Date.AddDays(-1 * (int)calendar.GetDayOfWeek(secondDate));
+            var CurrentUser = User.Identity.GetUserId();
+            var guestFound = db.guests.Where(g => g.ApplicationUserId == CurrentUser).SingleOrDefault();
 
-            return d1 == d2;
+            var filteredEvents = db.events.Where(e => e.Category.ToString() == id && e.Zip == guestFound.Zip).ToList();
+            return View(filteredEvents);
         }
+
+        public int GetWeekNumber(DateTime date)
+        {
+            CultureInfo currentCulture = CultureInfo.CurrentCulture;
+            int weekNumber = currentCulture.Calendar.GetWeekOfYear(date, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
+            return weekNumber;
+        }
+
+        
         // GET: Guest/Details/5
         public ActionResult Details(int? id)
         {
@@ -61,7 +91,7 @@ namespace GroupCapstone.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event foundEvent = db.events.Find(id);
+            var foundEvent = db.events.Find(id);
             if (foundEvent == null)
             {
                 return HttpNotFound();
@@ -69,6 +99,20 @@ namespace GroupCapstone.Controllers
             return View(foundEvent);
         }
 
+        public ActionResult MyPurchasedTickets()
+        {
+            var userId = User.Identity.GetUserId();
+            Guest guest = db.guests.Where(g => g.ApplicationUserId == userId).Single();
+            var tickets = db.tickets.Where(t => t.GuestId == guest.GuestId).ToList();
+            List<Models.Event> eventTix = new List<Models.Event>();
+            foreach (var tix in tickets)
+            {
+                var tempEvent = db.events.Where(e => e.EventId == tix.EventId).SingleOrDefault();
+                eventTix.Add(tempEvent);
+            }
+            
+            return View(eventTix);
+        }
         // GET: Guest/Create
         public ActionResult Create()
         {
@@ -99,6 +143,50 @@ namespace GroupCapstone.Controllers
             }
             return View(guest);
         }
+
+        public ActionResult GiveRating(int id)
+        {
+            try
+            {
+                var ratedEvent = db.events.Where(e => e.EventId == id).SingleOrDefault();
+                return View(ratedEvent);
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GiveRating(int id, Models.Event ratedEvent)
+        {
+            var thisEvent = db.events.Where(e => e.EventId == id).SingleOrDefault();
+            if (DateTime.Now > thisEvent.EventDate)
+            {
+                Ratings rating = new Ratings();
+                rating.Rating = ratedEvent.Rating;
+                rating.EventId = thisEvent.EventId;
+                db.ratings.Add(rating);
+                db.SaveChanges();
+                var eventsRatings = db.ratings.Where(r => r.EventId == id).ToList();
+                List<int> selectedRatings = new List<int>();
+                foreach (var filteredRating in eventsRatings)
+                {
+                    selectedRatings.Add(filteredRating.Rating);
+                }
+                int sum = selectedRatings.Sum();
+                int averageRating = sum / selectedRatings.Count;
+                thisEvent.Rating = averageRating;
+                
+             
+                ratedEvent.Rating = thisEvent.Rating;
+
+                db.SaveChanges();
+
+            }
+            return RedirectToAction("GuestHome");
+        }
+        
 
         // GET: Guest/Edit/5
         public ActionResult Edit(int id)

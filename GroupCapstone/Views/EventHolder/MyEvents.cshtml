@@ -4,13 +4,17 @@
     ViewBag.Title = "MyEvents";
 }
 
-<h2>MyEvents</h2>
+<h2>My Events</h2>
 
 <p>
     @Html.ActionLink("Create New", "CreateNewEvent")
 </p>
+<h5>
+    My Rating : @ViewBag.HolderAvg
+</h5>
 <table class="table">
     <tr>
+        <th></th>
         <th>
             @Html.DisplayNameFor(model => model.EventName)
         </th>
@@ -22,6 +26,9 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            <img src="@Url.Content(item.ImagePath)" />
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.EventName)
         </td>

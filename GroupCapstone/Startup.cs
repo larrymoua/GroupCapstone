@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Owin;
+using Stripe;
 
 [assembly: OwinStartupAttribute(typeof(GroupCapstone.Startup))]
 namespace GroupCapstone
@@ -13,6 +14,7 @@ namespace GroupCapstone
         {
             ConfigureAuth(app);
             CreateRolesandUsers();
+    
         }
 
 

@@ -86,7 +86,7 @@ namespace GroupCapstone.Controllers
 
             return View(/*events*/);
         }
-
+        
         [HttpGet]
         public ActionResult Edit(Event events)
         {

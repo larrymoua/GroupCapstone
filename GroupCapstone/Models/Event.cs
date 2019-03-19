@@ -15,7 +15,7 @@ namespace GroupCapstone.Models
         public string EventName { get; set; }
         [Display(Name = "Event's Date/Time")]
         [Required]
-        public DateTime EventDate{ get; set; }
+        public DateTime EventDate { get; set; }
         [Required]
         public string Street { get; set; }
         [Required]
@@ -24,7 +24,7 @@ namespace GroupCapstone.Models
         public States State { get; set; }
         [Required]
         public int Zip { get; set; }
-        public int? Rating { get; set; }
+        public int Rating { get; set; }
         [Required]
         public int TicketsAvailable { get; set; }
         [Required]
@@ -33,6 +33,7 @@ namespace GroupCapstone.Models
         public decimal TicketPrice { get; set; }
         public string ImagePath { get; set; }
 
+        
         public int HolderId { get; set; }
         [ForeignKey("HolderId")]
         public virtual EventHolder EventHolders { get; set; }

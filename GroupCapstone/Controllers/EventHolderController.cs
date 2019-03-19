@@ -12,6 +12,7 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using static System.Net.WebRequestMethods;
 using System.ComponentModel;
+using System.Net.Mail;
 
 namespace GroupCapstone.Controllers
 {
@@ -28,6 +29,10 @@ namespace GroupCapstone.Controllers
             var CurrentUser = User.Identity.GetUserId();
             var FoundEventHolder = db.eventHolders.Where(e => e.ApplicationUserId == CurrentUser).SingleOrDefault();
             var FoundEvent = db.events.Where(e => e.HolderId == FoundEventHolder.HolderId).ToList();
+            var sumOfRating = FoundEvent.Average(e => e.Rating);
+            //var avg = sumOfRating / FoundEvent.Count;
+            //FoundEventHolder.AvgRating = avg;
+            ViewBag.HolderAvg = sumOfRating;
 
             return View(FoundEvent);
         }
@@ -104,9 +109,6 @@ namespace GroupCapstone.Controllers
             var eventHolderFound = db.eventHolders.Where(e => e.ApplicationUserId == CurrentUser).SingleOrDefault();
             try
             {
-
-   
-
                 var NewCreatedEvent = new Event
                 {
                     EventName = newEvent.EventName,
@@ -120,9 +122,8 @@ namespace GroupCapstone.Controllers
                     EventId = eventHolderFound.HolderId,
                     Category = newEvent.Category,
                     EventHolders = eventHolderFound,
-                    HolderId = eventHolderFound.HolderId,
-                    ImagePath = newEvent.ImagePath
-                    
+                    HolderId = eventHolderFound.HolderId,                                     
+                    ImagePath = newEvent.ImagePath                   
                 };
 
 
@@ -220,6 +221,11 @@ namespace GroupCapstone.Controllers
             {
                 return View();
             }
+        }
+
+        public void SendEmail(string email, Guest guest)
+        {
+            
         }
     }
 }

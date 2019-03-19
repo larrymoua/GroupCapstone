@@ -1,27 +1,14 @@
 ﻿@model IEnumerable<GroupCapstone.Models.Event>
 
 @{
-    ViewBag.Title = "GuestHome";
+    ViewBag.Title = "Filter";
 }
 
-<h2>GuestHome</h2>
+<h2>Filter</h2>
 
-@using (Html.BeginForm("Filter", "Guest"))
-{
-    <table>
-        <tr>
-            <td>
-                @Html.DropDownList("id", new SelectList(ViewBag.ListData, "Category", "Category"))
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="submit" value="Filter">
-            </td>
-        </tr>
-    </table>
-}
-
+<p>
+    @Html.ActionLink("Back To All Events", "GuestHome")
+</p>
 <table class="table">
     <tr>
         <th>Image</th>
@@ -82,10 +69,8 @@
             @Html.DisplayFor(modelItem => item.TicketPrice)
         </td>
         <td>
-            @Html.ActionLink("Details", "EventDetails", new { id = item.EventId })
-        </td>
-        <td>
-            @Html.ActionLink("Rate", "GiveRating", new { id = item.EventId })
+
+            @Html.ActionLink("Details", "Details", new { id = item.EventId }) |
         </td>
     </tr>
 }
