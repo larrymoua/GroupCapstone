@@ -69,25 +69,8 @@
         <dt>
             @Html.DisplayNameFor(model => model.TicketPrice)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.TicketPrice)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ImagePath)
-        </dt>
-        
-        @*<dd>
-            @Html.DisplayFor(model => model.Comment)
-        </dd>
-        
-        <dt>
-            @Html.DisplayNameFor(model => model.Comment)
-        </dt>*@
-
-        <dd>
-            @Html.DisplayFor(model => model.ImagePath)
         </dd>
 
         <dt>
@@ -106,6 +89,14 @@
         </dd>
 
     </dl>
+    <div>
+        <a href="#" class="btn btn-primary btn-sm">Get Weather</a>
+        <p id="reply"></p>
+        <p id="reply2"></p>
+    </div>
+    <div>
+        <p id="reply"></p>
+    </div>
     <meta charset="utf-8">
     <style>
         /* Always set the map height explicitly to define the size of the div
@@ -115,7 +106,19 @@
             width: 400px;
         }
     </style>
-
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/js/plugins/openWeather.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("a").click(function () {             
+                $.get("http://api.openweathermap.org/data/2.5/weather?lat=@ViewBag.lat&lon=@ViewBag.Long&APPID=35bd7d68bf30c2b4be5024747ceacecb&units=imperial}", function (response) {
+                    //response
+                    $("#reply").text(((response.main.temp - 273.15) * (9 / 5) + 32).toFixed());
+                    $("#reply2").text(response.weather[0].main);
+                });
+            });
+        });
+    </script>
     <div id="map"></div>
     <script>
         var map;
@@ -130,8 +133,16 @@
         }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBA-VL6jTbTGJNW77AsuCuLRVwXB2wKGo&callback=initMap"
-            async defer></script> 
-    </div>
+            async defer></script>
+</div>
+
+
+
+
+
+
+
+
 
 
 

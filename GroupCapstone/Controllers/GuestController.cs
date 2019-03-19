@@ -41,16 +41,16 @@ namespace GroupCapstone.Controllers
                     eventsThisWeek.Add(foundEvent);
                 }
             }
-
             var typeList = Enum.GetValues(typeof(Category))
             .Cast<Category>()
             .Select(t => new AcessClass
             {
                 Category = ((Category)t),
-
             });
             ViewBag.ListData = typeList;
             return View(eventsThisWeek);
+
+            
         }
         public ActionResult Filter(string id)
         {

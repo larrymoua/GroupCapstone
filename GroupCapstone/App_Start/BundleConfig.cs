@@ -23,7 +23,7 @@ namespace GroupCapstone
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/yeti.css",
                       "~/Content/site.css"));
         }
     }

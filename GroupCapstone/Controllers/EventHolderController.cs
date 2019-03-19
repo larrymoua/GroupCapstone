@@ -53,16 +53,17 @@ namespace GroupCapstone.Controllers
                 {
                     Latitude = item.geometry.location.lat;
                     Longitude = item.geometry.location.lng;
-                    ViewBag.Lat =Latitude.ToString();
+                    ViewBag.Lat = Latitude.ToString();
                     ViewBag.Long = Longitude.ToString();
-                }
-              
-            }
-
+                }         
+            }         
 
 
             return View(foundEvent);
         }
+
+
+
 
         // GET: EventHolder/Create
         public ActionResult CreateEventHolder()
@@ -219,9 +220,6 @@ namespace GroupCapstone.Controllers
             }
         }
 
-        public void SendEmail(string email, Guest guest)
-        {
-            
-        }
+       
     }
 }
