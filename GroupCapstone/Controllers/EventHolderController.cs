@@ -13,6 +13,9 @@ using System.Web.Script.Serialization;
 using static System.Net.WebRequestMethods;
 using System.ComponentModel;
 using System.Net.Mail;
+using MimeKit;
+using MailKit;
+using MailKit.Net.Smtp;
 
 namespace GroupCapstone.Controllers
 {
@@ -122,16 +125,16 @@ namespace GroupCapstone.Controllers
                     EventId = eventHolderFound.HolderId,
                     Category = newEvent.Category,
                     EventHolders = eventHolderFound,
-                    HolderId = eventHolderFound.HolderId,                                     
-                    ImagePath = newEvent.ImagePath                   
+                    HolderId = eventHolderFound.HolderId,
+                    ImagePath = newEvent.ImagePath
+
                 };
 
 
                 db.events.Add(NewCreatedEvent);
                 db.SaveChanges();
-                return RedirectToAction("MyEvents");
+                return View("MyEvents");
             }
-
             catch
             {
                 return View("MyEvents");
@@ -158,11 +161,13 @@ namespace GroupCapstone.Controllers
                 editedEventHolder.LastName = eventHolder.LastName;
                 editedEventHolder.CompanyName = eventHolder.CompanyName;
                 db.SaveChanges();
+
+
                 return RedirectToAction("MyEvents");
             }
             catch
             {
-                return View();
+                return View("MyEvents");
             }
         }
 
@@ -214,12 +219,47 @@ namespace GroupCapstone.Controllers
                 FoundEvent.TicketsAvailable = events.TicketsAvailable;
                 FoundEvent.TicketPrice = events.TicketPrice;
                 db.SaveChanges();
+                var foundbookmarkers = db.bookmarks.Where(b => b.EventId == FoundEvent.EventId).ToList();
+                List<Guest> foundGuest = new List<Guest>();
+                foreach (var item in foundbookmarkers)
+                {
+                    var guestFound = db.guests.Where(g => g.GuestId == item.GuestId).Single();
+                    foundGuest.Add(guestFound);
+                }
 
-                return RedirectToAction("MyEvents", "EventHolder");
+                foreach (Guest guest in foundGuest)
+                {
+                    var message = new MimeMessage();
+                    message.From.Add(new MailboxAddress($"{FoundEvent.EventName}", "sweepsstackproject@gmail.com"));
+                    message.To.Add(new MailboxAddress($"{guest.FirstName}, {guest.LastName}", "sweepsstackproject@gmail.com"));
+                    message.Subject = "Event Update";
+
+                    message.Body = new TextPart("plain")
+                    {
+                        Text = $@"Hello ,
+                        We would like to notify you on our updates to our event.               
+                        -- GroupCapStone"
+                    };
+                    using (var client = new MailKit.Net.Smtp.SmtpClient())
+                    {
+                        client.ServerCertificateValidationCallback = (s, c, h, e) => true;
+
+                        client.Connect("smtp.gmail.com", 587, false);
+                        client.Authenticate("sweepsstackproject", "sweep12!!");
+                        client.Send(message);
+                        client.Disconnect(true);
+
+
+                    }
+                
+                }
+
+                return RedirectToAction("MyEvents");
             }
+                      
             catch
             {
-                return View();
+                return RedirectToAction("MyEvents");
             }
         }
 

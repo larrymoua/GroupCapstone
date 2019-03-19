@@ -88,7 +88,7 @@
             @Html.ActionLink("Rate", "GiveRating", new { id = item.EventId })
         </td>
         <td>
-            @Html.ActionLink("Purchase Ticket", "Create", "Cart")
+            @Html.ActionLink("Purchase Ticket", "Create", "Cart", new { id = item.EventId },null)
         </td>
     </tr>
 }

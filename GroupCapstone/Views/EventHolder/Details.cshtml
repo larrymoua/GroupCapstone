@@ -121,7 +121,7 @@
         var map;
         function initMap() {
                 // The location of Uluru
-                var uluru = { lat: @ViewBag.lat, lng: @ViewBag.Long };
+                var location = { lat: @ViewBag.lat, lng: @ViewBag.Long };
                 // The map, centered at Uluru
                 var map = new google.maps.Map(
                     document.getElementById('map'), { zoom: 15, center: uluru });
