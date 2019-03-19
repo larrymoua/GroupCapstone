@@ -85,28 +85,6 @@
 
     </dl>
 </div>
-
-<div style="height:280px; margin-left: 4px; margin-top:0px;">
-    <table>
-        <tr>
-            <td>Name:</td>
-            <td><asp:TextBox ID="txtName" runat="server"></asp:TextBox></td>
-        </tr>
-        <tr>
-            <td>Subject:</td>
-            <td><asp:TextBox ID="txtSubjet" runat="server"></asp:TextBox></td>
-        </tr>
-        <tr>
-            <td valign="top">Comments:</td>
-            <td><asp:TextBox id="txt1" runat="server" Rows="5" Columns="20" TextMode="MultiLine" Width="400px" /></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><asp:Button id="Button5" runat="server" text="Submit" onclick="Button5_Click"/></td>
-        </tr>
-    </table>    
+<div>
+    @Html.ActionLink("Comment", "AddComment","Event", new { id = Model.EventId }, null )
 </div>
-
-<p>
-    @Html.ActionLink("Back to List", "GuestHome")
-</p>

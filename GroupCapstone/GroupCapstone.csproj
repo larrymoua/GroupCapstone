@@ -203,17 +203,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903172236207_Migration1.cs" />
-    <Compile Include="Migrations\201903172236207_Migration1.Designer.cs">
-      <DependentUpon>201903172236207_Migration1.cs</DependentUpon>
+    <Compile Include="Migrations\201903191829491_Current.cs" />
+    <Compile Include="Migrations\201903191829491_Current.Designer.cs">
+      <DependentUpon>201903191829491_Current.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903182257000_ChangesToEvent.cs" />
-    <Compile Include="Migrations\201903182257000_ChangesToEvent.Designer.cs">
-      <DependentUpon>201903182257000_ChangesToEvent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903191222320_update.cs" />
-    <Compile Include="Migrations\201903191222320_update.Designer.cs">
-      <DependentUpon>201903191222320_update.cs</DependentUpon>
+    <Compile Include="Migrations\201903191857245_Current1.cs" />
+    <Compile Include="Migrations\201903191857245_Current1.Designer.cs">
+      <DependentUpon>201903191857245_Current1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -300,14 +296,13 @@
     <Content Include="Views\EventHolder\Details.cshtml" />
     <Content Include="Views\Guest\GuestHome.cshtml" />
     <Content Include="Views\Guest\EventDetails.cshtml" />
-    <Content Include="Views\Event\CreateComments.cshtml" />
-    <Content Include="Views\Event\AddComment.cshtml" />
     <Content Include="Views\Guest\Charge.cshtml" />
     <Content Include="Views\Cart\Create.cshtml" />
     <Content Include="Views\Cart\OrderStatus.cshtml" />
     <Content Include="Views\Guest\GiveRating.cshtml" />
     <Content Include="Views\Guest\MyPurchasedTickets.cshtml" />
     <Content Include="Views\Guest\Filter.cshtml" />
+    <Content Include="Views\Event\AddComment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Guest\Create.cshtml" />
@@ -333,14 +328,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903172236207_Migration1.resx">
-      <DependentUpon>201903172236207_Migration1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903191829491_Current.resx">
+      <DependentUpon>201903191829491_Current.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903182257000_ChangesToEvent.resx">
-      <DependentUpon>201903182257000_ChangesToEvent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903191222320_update.resx">
-      <DependentUpon>201903191222320_update.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903191857245_Current1.resx">
+      <DependentUpon>201903191857245_Current1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

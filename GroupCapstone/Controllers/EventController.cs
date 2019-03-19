@@ -33,14 +33,15 @@ namespace GroupCapstone.Controllers
 
         // GET: Event/Create
         [HttpGet]
-        public ActionResult CreateComment()
+        public ActionResult AddComment(int id)
         {
             CommentVM commentView = new CommentVM();
+            commentView.Event = _context.events.Where(e => e.EventId == id).Single();
             return View(commentView);
         }
 
         [HttpPost]
-        public ActionResult CreateComment(CommentVM commentView)
+        public ActionResult AddComment(CommentVM commentView)
         {
             var user = User.Identity.GetUserId();
             var guest = _context.guests.Where(g => g.ApplicationUserId == user).SingleOrDefault();
@@ -48,6 +49,7 @@ namespace GroupCapstone.Controllers
             comment.Date = DateTime.Now;
             comment.EventId = commentView.Event.EventId;
             comment.User = guest.FirstName;
+            comment.Description = commentView.Comment.Description;
             _context.Comments.Add(comment);
 
             _context.SaveChanges();
