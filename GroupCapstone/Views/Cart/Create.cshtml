@@ -3,8 +3,9 @@
     ViewBag.Title = "Create";
 }
 @section stripe{
-<script src="https://js.stripe.com/v3/"></script>    
-    <script>// Create a Stripe client.
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        // Create a Stripe client.
         var stripe = Stripe('pk_test_JE9kX7mzcEdyp16HfLpnsRBq');
 
         // Create an instance of Elements.
@@ -75,7 +76,7 @@
             form.submit();
         }</script>}
 <h2>Buy me!</h2>
-
+@model GroupCapstone.Models.Event
 
 
 <form action="/Cart/Create" method="post" id="payment-form">
@@ -84,11 +85,12 @@
             Credit or debit card
         </label>
         <div id="card-element">
-            <!-- A Stripe Element will be inserted here. -->
+
         </div>
 
         <!-- Used to display form errors. -->
         <div id="card-errors" role="alert"></div>
+        @Html.HiddenFor(m => m.EventId)
     </div>
 
     <button>Submit Payment</button>

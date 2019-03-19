@@ -49,7 +49,7 @@ namespace GroupCapstone.Controllers
               Category = ((Category)t),
 
           });
-                ViewBag.ListData = typeList;
+            ViewBag.ListData = typeList;
 
             return View(eventsThisWeek);
         }
@@ -69,7 +69,25 @@ namespace GroupCapstone.Controllers
             return weekNumber;
         }
 
-        
+        public ActionResult BookMarker(int id)
+        {
+            try
+            {
+                var CurrentUser = User.Identity.GetUserId();
+                var guestFound = db.guests.Where(g => g.ApplicationUserId == CurrentUser).SingleOrDefault();
+                var newBookMark = new Bookmarks { EventId = id, GuestId = guestFound.GuestId };
+                db.bookmarks.Add(newBookMark);
+                db.SaveChanges();
+
+                return RedirectToAction("GuestHome");
+            }
+            catch
+            {
+
+                return RedirectToAction("GuestHome");
+            }
+
+        }
         // GET: Guest/Details/5
         public ActionResult Details(int? id)
         {

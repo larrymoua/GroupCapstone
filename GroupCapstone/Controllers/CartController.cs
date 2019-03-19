@@ -14,20 +14,22 @@ namespace GroupCapstone.Controllers
     public class CartController : Controller
     {
         private ApplicationDbContext db;
-
         public CartController()
         {
             db = new ApplicationDbContext();
+
         }
   
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
-            return View();
+            Models.Event events = db.events.Where(e => e.EventId == id).SingleOrDefault();
+           
+            return View(events);
         }
 
         // POST: Cart/Create
         [HttpPost]
-        public ActionResult Create(string stripeToken)
+        public ActionResult Create(string stripeToken, Models.Event events)
         {
             StripeConfiguration.SetApiKey("sk_test_xUz5aOBDwQSi8S61VVen5E37");
      
@@ -45,11 +47,12 @@ namespace GroupCapstone.Controllers
             model.ChargeId = charge.Id;
 
             var CurrentUser = User.Identity.GetUserId();
+            var foundEvent = db.events.Where(e => e.EventId == events.EventId).SingleOrDefault();
             
             var guestFound = db.guests.Where(e => e.ApplicationUserId == CurrentUser).SingleOrDefault();
 
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress($"Group CapStone", "sweepsstackproject@gmail.com"));
+            message.From.Add(new MailboxAddress($"{foundEvent.EventName}", "sweepsstackproject@gmail.com"));
             message.To.Add(new MailboxAddress($"{guestFound.FirstName} {guestFound.LastName}", "sweepsstackproject@gmail.com"));
             message.Subject = "Order Confirmation";
 
