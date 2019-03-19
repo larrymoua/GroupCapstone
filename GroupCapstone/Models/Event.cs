@@ -32,12 +32,16 @@ namespace GroupCapstone.Models
         [Required]
         public decimal TicketPrice { get; set; }
         public string ImagePath { get; set; }
-        public object Comment { get; set; }
 
         public int HolderId { get; set; }
         [ForeignKey("HolderId")]
         public virtual EventHolder EventHolders { get; set; }
-        public int CommentId { get; set; }
+       
+
+        //public List<Comment> comments = new List<Comment>();
+
+        //public ICollection<Comment> Comments { get; set; }
+
     }   
 
 }

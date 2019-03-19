@@ -11,9 +11,13 @@ namespace GroupCapstone.Models
     {
         [Key]
         public int Id { get; set; }
-        public int UserID { get; set; }
+        public string User { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
+
+        public int EventId { get; set; }
+        [ForeignKey("EventId")]
+        public virtual Event Events { get; set; }
 
     }
 }

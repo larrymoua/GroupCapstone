@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using Microsoft.AspNet.Identity;
 
 namespace GroupCapstone.Controllers
 {
@@ -19,44 +20,55 @@ namespace GroupCapstone.Controllers
 
         public ActionResult Index()
         {
-            var events = _context.events.Include(e => e.Comment).ToList();
-            return View(events);
+            
+            return View();
         }
 
         // GET: Event/Details/5
         public ActionResult Details(int id)
         {
-            var events = _context.events.Include(e => e.Comment).SingleOrDefault(e => e.EventId == id);
-            return View(events);
+            
+            return View();
         }
 
         // GET: Event/Create
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult CreateComment()
         {
-            var comment = _context.events.ToList();
-            Event events = new Event()
-            {
-                Comment = comment
-            };
-            return View(events);
+            CommentVM commentView = new CommentVM();
+            return View(commentView);
+        }
+
+        [HttpPost]
+        public ActionResult CreateComment(CommentVM commentView)
+        {
+            var user = User.Identity.GetUserId();
+            var guest = _context.guests.Where(g => g.ApplicationUserId == user).SingleOrDefault();
+            Comment comment = new Comment();
+            comment.Date = DateTime.Now;
+            comment.EventId = commentView.Event.EventId;
+            comment.User = guest.FirstName;
+            _context.Comments.Add(comment);
+
+            _context.SaveChanges();
+            return RedirectToAction("Details");
         }
 
         // POST: Event/Create
         [HttpPost]
-        public ActionResult Create(Event events)
+        public ActionResult Create()
         {
-            if(events.EventId == 0)
-            {
-                _context.events.Add(events);
-            }
-            else
-            {
-                // TODO: Add insert logic here
-                var eventInDB = _context.events.Single(e => e.EventId == events.EventId);
+            //if/*(events.EventId == 0)*/
+            //{
+            //    /*_context.events.Add(events);*/
+            //}
+            //else
+            //{
+            //    // TODO: Add insert logic here
+            //    /*var eventInDB = _context.events.Single(e => e.EventId == events.EventId);*/
 
-                eventInDB.CommentId = events.CommentId;
-            }
+            //    /*eventInDB.CommentId = events.CommentId;*/
+            //}
             _context.SaveChanges();
             return RedirectToAction("Index", "Events");
         }
@@ -65,23 +77,23 @@ namespace GroupCapstone.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var events = _context.events.SingleOrDefault(e => e.EventId == id);
+            /*var events = _context.events.SingleOrDefault(e => e.EventId == id);
             events.Comment = _context.Comments.ToList();
             if (events == null)
             {
                 return HttpNotFound();
-            }
+            }*/
 
-            return View(events);
+            return View(/*events*/);
         }
 
         [HttpGet]
         public ActionResult Edit(Event events)
         {
-            var eventInDB = _context.events.Single(e => e.EventId == events.EventId);
+            /*var eventInDB = _context.events.Single(e => e.EventId == events.EventId);
             eventInDB.CommentId = events.CommentId;
             eventInDB.Comment = _context.Comments.ToList();
-            _context.SaveChanges();
+            _context.SaveChanges();*/
             return RedirectToAction("Index", "Events");
         }
 
@@ -104,11 +116,7 @@ namespace GroupCapstone.Controllers
         // GET: Event/Delete/5
         public ActionResult Delete(int id)
         {
-            var events = _context.events.SingleOrDefault(e => e.EventId == id);
-            _context.events.Remove(events);
-            _context.SaveChanges();
-            //var  = _context.events.Include(e => e.Comment).ToList();
-            return View("Index", events);
+            return View();
         }
 
         // POST: Event/Delete/5

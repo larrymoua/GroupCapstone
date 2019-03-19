@@ -7,13 +7,13 @@ namespace GroupCapstone.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class work : IMigrationMetadata
+    public sealed partial class ChangesToEvent : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(work));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangesToEvent));
         
         string IMigrationMetadata.Id
         {
-            get { return "201903152057101_work!"; }
+            get { return "201903182257000_ChangesToEvent"; }
         }
         
         string IMigrationMetadata.Source
