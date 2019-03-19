@@ -9,6 +9,15 @@
 <div>
     <h4>Event</h4>
     <hr />
+    <h3>
+        Event Bookmarks : @ViewBag.BookMarkerForEvents
+    </h3>
+    <h3>
+        Event Purchased Tickets : @ViewBag.PurchasedAdmission
+    </h3>
+    <h3>
+        Available Tickets : @ViewBag.TicketsAvailable
+    </h3>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.EventName)
@@ -74,6 +83,7 @@
         </dd>
 
         <dt>
+
             @Html.DisplayNameFor(model => model.Category)
         </dt>
 
@@ -135,13 +145,6 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBA-VL6jTbTGJNW77AsuCuLRVwXB2wKGo&callback=initMap"
             async defer></script>
 </div>
-
-
-
-
-
-
-
 
 
 

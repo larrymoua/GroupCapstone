@@ -198,11 +198,14 @@
     <Compile Include="Controllers\GuestController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\StripeChargeCreateOptions.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903192223518_AfterPull.cs" />
+    <Compile Include="Migrations\201903192223518_AfterPull.Designer.cs">
+      <DependentUpon>201903192223518_AfterPull.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -210,6 +213,7 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\ChargeViewModel.cs" />
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\CommentVM.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventHolder.cs" />
     <Compile Include="Models\Guest.cs" />
@@ -289,6 +293,8 @@
     <Content Include="Views\EventHolder\Details.cshtml" />
     <Content Include="Views\Guest\GuestHome.cshtml" />
     <Content Include="Views\Guest\EventDetails.cshtml" />
+    <Content Include="Views\Event\CreateComments.cshtml" />
+    <Content Include="Views\Event\AddComment.cshtml" />
     <Content Include="Views\Guest\Charge.cshtml" />
     <Content Include="Views\Cart\Create.cshtml" />
     <Content Include="Views\Cart\OrderStatus.cshtml" />
@@ -304,7 +310,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Event\" />
     <Folder Include="Views\Roles\" />
     <Folder Include="Views\Users\" />
   </ItemGroup>
@@ -320,6 +325,11 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201903192223518_AfterPull.resx">
+      <DependentUpon>201903192223518_AfterPull.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

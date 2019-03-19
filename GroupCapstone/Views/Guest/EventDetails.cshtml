@@ -9,6 +9,7 @@
 <div>
     <h4>Event</h4>
     <hr />
+    @Html.ActionLink("BookMark", "BookMarker", new { id = Model.EventId })
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.EventName)
@@ -83,30 +84,38 @@
         </dd>
 
 
+
     </dl>
 </div>
 
-<div style="height:280px; margin-left: 4px; margin-top:0px;">
-    <table>
-        <tr>
-            <td>Name:</td>
-            <td><asp:TextBox ID="txtName" runat="server"></asp:TextBox></td>
-        </tr>
-        <tr>
-            <td>Subject:</td>
-            <td><asp:TextBox ID="txtSubjet" runat="server"></asp:TextBox></td>
-        </tr>
-        <tr>
-            <td valign="top">Comments:</td>
-            <td><asp:TextBox id="txt1" runat="server" Rows="5" Columns="20" TextMode="MultiLine" Width="400px" /></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><asp:Button id="Button5" runat="server" text="Submit" onclick="Button5_Click"/></td>
-        </tr>
-    </table>    
-</div>
+    <meta charset="utf-8">
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+            * element that contains the map. */
+        #map {
+            height: 400px;
+            width: 400px;
+        }
+    </style>
 
-<p>
-    @Html.ActionLink("Back to List", "GuestHome")
-</p>
+    <div id="map"></div>
+    <script>
+            var map;
+            function initMap() {
+                    // The location of Uluru
+                    var uluru = { lat: @ViewBag.lat, lng: @ViewBag.Long };
+                    // The map, centered at Uluru
+                    var map = new google.maps.Map(
+                        document.getElementById('map'), { zoom: 15, center: uluru });
+                    // The marker, positioned at Uluru
+                    var marker = new google.maps.Marker({ position: uluru, map: map });
+            }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBA-VL6jTbTGJNW77AsuCuLRVwXB2wKGo&callback=initMap"
+            async defer></script>
+
+
+
+<div>
+    @Html.ActionLink("Comment", "AddComment","Event", new { id = Model.EventId }, null )
+</div>
