@@ -143,11 +143,11 @@ namespace GroupCapstone.Controllers
 
                 db.events.Add(NewCreatedEvent);
                 db.SaveChanges();
-                return View("MyEvents");
+                return RedirectToAction("MyEvents");
             }
             catch
             {
-                return View("MyEvents");
+               return RedirectToAction("MyEvents");
             }
 
         }
