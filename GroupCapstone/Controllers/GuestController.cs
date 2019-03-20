@@ -63,6 +63,13 @@ namespace GroupCapstone.Controllers
             return View(filteredEvents);
         }
 
+        public ActionResult FilterHighRating()
+        {            
+            var allEvents = db.events.ToList();
+            var newList = allEvents.OrderByDescending(a => a.Rating).ToList();
+            return View(newList);
+        }
+
         public int GetWeekNumber(DateTime date)
         {
             CultureInfo currentCulture = CultureInfo.CurrentCulture;

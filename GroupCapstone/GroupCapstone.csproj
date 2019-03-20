@@ -296,7 +296,7 @@
     <Content Include="Views\Guest\GiveRating.cshtml" />
     <Content Include="Views\Guest\MyPurchasedTickets.cshtml" />
     <Content Include="Views\Guest\Filter.cshtml" />
-    <Content Include="Views\Guest\WeatherJS.cshtml" />
+    <Content Include="Views\Guest\FilterHighRating.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Guest\Create.cshtml" />
