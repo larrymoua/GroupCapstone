@@ -1,4 +1,4 @@
-﻿@model GroupCapstone.Models.Event
+﻿@model GroupCapstone.Models.CommentVM
 
 @{
     ViewBag.Title = "EventDetails";
@@ -9,78 +9,78 @@
 <div>
     <h4>Event</h4>
     <hr />
-    @Html.ActionLink("BookMark", "BookMarker", new { id = Model.EventId })
+    @Html.ActionLink("BookMark", "BookMarker", new { id = Model.Event.EventId })
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.EventName)
+            @Html.DisplayNameFor(model => model.Event.EventName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.EventName)
+            @Html.DisplayFor(model => model.Event.EventName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.EventDate)
+            @Html.DisplayNameFor(model => model.Event.EventDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.EventDate)
+            @Html.DisplayFor(model => model.Event.EventDate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Street)
+            @Html.DisplayNameFor(model => model.Event.Street)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Street)
+            @Html.DisplayFor(model => model.Event.Street)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.City)
+            @Html.DisplayNameFor(model => model.Event.City)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.City)
+            @Html.DisplayFor(model => model.Event.City)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Zip)
+            @Html.DisplayNameFor(model => model.Event.Zip)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Zip)
+            @Html.DisplayFor(model => model.Event.Zip)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Rating)
+            @Html.DisplayNameFor(model => model.Event.Rating)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Rating)
+            @Html.DisplayFor(model => model.Event.Rating)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TicketsAvailable)
+            @Html.DisplayNameFor(model => model.Event.TicketsAvailable)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TicketsAvailable)
+            @Html.DisplayFor(model => model.Event.TicketsAvailable)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TicketPrice)
+            @Html.DisplayNameFor(model => model.Event.TicketPrice)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TicketPrice)
+            @Html.DisplayFor(model => model.Event.TicketPrice)
         </dd>
 
         <dt>
-            @Html.HiddenFor(model => model.ImagePath)
+            @Html.HiddenFor(model => model.Event.ImagePath)
         </dt>
 
         <dd>
-            @Html.HiddenFor(model => model.ImagePath)
+            @Html.HiddenFor(model => model.Event.ImagePath)
         </dd>
 
 
@@ -115,7 +115,17 @@
             async defer></script>
 
 
+<br />
+<button>
+    @Html.ActionLink("Make a new comment", "AddComment","Event", new { id = Model.Event.EventId }, null )
+</button>
 
-<div>
-    @Html.ActionLink("Comment", "AddComment","Event", new { id = Model.EventId }, null )
+<h4>Comments about this event:</h4>
+@foreach(var item in Model.Comments)
+ {<p></p>
+<div style="border:1px solid black">
+    <p style="border-bottom:1px solid black">On @item.Date,</p>
+    <p>@item.User said:</p>
+    <p>@item.Description</p>
 </div>
+ }

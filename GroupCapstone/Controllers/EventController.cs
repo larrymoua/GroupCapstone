@@ -16,9 +16,7 @@ namespace GroupCapstone.Controllers
         {
             _context = new ApplicationDbContext();
         }
-        // GET: Event
 
-        // GET: Event/Create
         [HttpGet]
         public ActionResult AddComment(int id)
         {

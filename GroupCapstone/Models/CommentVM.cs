@@ -10,5 +10,7 @@ namespace GroupCapstone.Models
         public Comment Comment { get; set; }
         public Event Event { get; set; }
 
+        public List<Comment> Comments { get; set; }
+
     }
 }

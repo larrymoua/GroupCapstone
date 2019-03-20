@@ -43,17 +43,20 @@ namespace GroupCapstone.Controllers
         // GET: EventHolder/Details/5
         public ActionResult Details(int id)
         {
-            var foundEvent = db.events.Find(id);
+            CommentVM ComVM = new CommentVM();
 
+            ComVM.Event = db.events.Find(id);
+            ComVM.Comments = new List<Comment>();
+            ComVM.Comments = db.Comments.Where(c => c.EventId == id).ToList();
             using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
             {
-                var states = Extensions.GetDescription(foundEvent.State);
+                var states = Extensions.GetDescription(ComVM.Event.State);
                 client.BaseAddress = new Uri("Https://maps.googleapis.com/maps/api/geocode/");
-                HttpResponseMessage response = client.GetAsync($"json?address={foundEvent.Street}+{foundEvent.Zip},+{foundEvent.City},+{states}&key=AIzaSyBBA-VL6jTbTGJNW77AsuCuLRVwXB2wKGo").Result;
+                HttpResponseMessage response = client.GetAsync($"json?address={ComVM.Event.Street}+{ComVM.Event.Zip},+{ComVM.Event.City},+{states}&key=AIzaSyBBA-VL6jTbTGJNW77AsuCuLRVwXB2wKGo").Result;
                 response.EnsureSuccessStatusCode();
                 var result = response.Content.ReadAsStringAsync().Result;
                 RootObject root = JsonConvert.DeserializeObject<RootObject>(result);
-           
+
                 double Latitude = 0.0;
                 double Longitude = 0.0;
                 foreach (var item in root.results)
@@ -62,16 +65,17 @@ namespace GroupCapstone.Controllers
                     Longitude = item.geometry.location.lng;
                     ViewBag.Lat = Latitude.ToString();
                     ViewBag.Long = Longitude.ToString();
-                }         
+                }
+
             }
-            var ticketsBought = db.tickets.Where(e => e.EventId == foundEvent.EventId).ToList();
-            var bookmarks = db.bookmarks.Where(b => b.EventId == foundEvent.EventId);
+            var ticketsBought = db.tickets.Where(e => e.EventId == ComVM.Event.EventId).ToList();
+            var bookmarks = db.bookmarks.Where(b => b.EventId == ComVM.Event.EventId);
             ViewBag.PurchasedAdmission = ticketsBought.Count();
             ViewBag.BookMarkerForEvents = bookmarks.Count();
-            ViewBag.TicketsAvailable = foundEvent.TicketsAvailable - ticketsBought.Count;
+            ViewBag.TicketsAvailable = ComVM.Event.TicketsAvailable - ticketsBought.Count;
 
 
-            return View(foundEvent);
+            return View(ComVM);
 
         }
          
