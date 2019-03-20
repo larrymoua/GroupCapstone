@@ -60,17 +60,21 @@ namespace GroupCapstone.Controllers
                 {
                     Latitude = item.geometry.location.lat;
                     Longitude = item.geometry.location.lng;
-                    ViewBag.Lat =Latitude.ToString();
+                    ViewBag.Lat = Latitude.ToString();
                     ViewBag.Long = Longitude.ToString();
-                }
-              
+                }         
             }
-
+            var ticketsBought = db.tickets.Where(e => e.EventId == foundEvent.EventId).ToList();
+            var bookmarks = db.bookmarks.Where(b => b.EventId == foundEvent.EventId);
+            ViewBag.PurchasedAdmission = ticketsBought.Count();
+            ViewBag.BookMarkerForEvents = bookmarks.Count();
+            ViewBag.TicketsAvailable = foundEvent.TicketsAvailable - ticketsBought.Count;
 
 
             return View(foundEvent);
-        }
 
+        }
+         
         // GET: EventHolder/Create
         public ActionResult CreateEventHolder()
         {
@@ -263,9 +267,6 @@ namespace GroupCapstone.Controllers
             }
         }
 
-        public void SendEmail(string email, Guest guest)
-        {
-            
-        }
+       
     }
 }

@@ -32,10 +32,14 @@ namespace GroupCapstone.Controllers
         public ActionResult Create(string stripeToken, Models.Event events)
         {
             StripeConfiguration.SetApiKey("sk_test_xUz5aOBDwQSi8S61VVen5E37");
-     
+            var CurrentUser = User.Identity.GetUserId();
+            var foundEvent = db.events.Where(e => e.EventId == events.EventId).SingleOrDefault();
+            var guestFound = db.guests.Where(e => e.ApplicationUserId == CurrentUser).SingleOrDefault();
+            long cost = (long)Convert.ToDouble(foundEvent.TicketPrice); 
+
             var options = new ChargeCreateOptions
             {
-                Amount = 999,
+                Amount = cost,
                 Currency = "usd",
                 Description = "Example charge for larrymoua24@yahoo.com",
                 SourceId = stripeToken
@@ -46,10 +50,9 @@ namespace GroupCapstone.Controllers
             var model = new ChargeViewModel();
             model.ChargeId = charge.Id;
 
-            var CurrentUser = User.Identity.GetUserId();
-            var foundEvent = db.events.Where(e => e.EventId == events.EventId).SingleOrDefault();
-            
-            var guestFound = db.guests.Where(e => e.ApplicationUserId == CurrentUser).SingleOrDefault();
+            var purchasedTicket = new Ticket { EventId = foundEvent.EventId, GuestId = guestFound.GuestId};
+            db.tickets.Add(purchasedTicket);
+            db.SaveChanges();
 
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress($"{foundEvent.EventName}", "sweepsstackproject@gmail.com"));
