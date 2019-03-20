@@ -6,6 +6,7 @@ using Stripe;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -31,6 +32,24 @@ namespace GroupCapstone.Controllers
         [HttpPost]
         public ActionResult Create(string stripeToken, Models.Event events)
         {
+
+            //HttpResponse response = Unirest.post("https://neutrinoapi-qr-code.p.rapidapi.com/qr-code")
+            //.header("X-RapidAPI-Key", "42686f9288msh669750bfe57d0e8p14b94ejsnda982c981f0e")
+            //.header("Content-Type", "application/x-www-form-urlencoded")
+            //.field("bg-color", "#ffffff")
+            //.field("width", 128)
+            //.field("fg-color", "#000000")
+            //.field("height", 128)
+            //.field("content", "http://www.neutrinoapi.com")
+            //.asJson();
+
+
+
+
+
+
+
+
             StripeConfiguration.SetApiKey("sk_test_xUz5aOBDwQSi8S61VVen5E37");
             var CurrentUser = User.Identity.GetUserId();
             var foundEvent = db.events.Where(e => e.EventId == events.EventId).SingleOrDefault();
@@ -39,7 +58,7 @@ namespace GroupCapstone.Controllers
 
             var options = new ChargeCreateOptions
             {
-                Amount = cost,
+                Amount = cost*10,
                 Currency = "usd",
                 Description = "Example charge for larrymoua24@yahoo.com",
                 SourceId = stripeToken
@@ -77,6 +96,8 @@ namespace GroupCapstone.Controllers
 
                 return View("OrderStatus", model);
             }
+
+
         }
 
     }
