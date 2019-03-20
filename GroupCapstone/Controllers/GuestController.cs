@@ -106,13 +106,16 @@ namespace GroupCapstone.Controllers
 
         public ActionResult EventDetails(int? id)
         {
-            var foundEvent = db.events.Find(id);
+            CommentVM ComVM = new CommentVM();
 
+            ComVM.Event = db.events.Find(id);
+            ComVM.Comments = new List<Comment>();
+            ComVM.Comments = db.Comments.Where(c => c.EventId == id).ToList();
             using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
             {
-                var states = Extensions.GetDescription(foundEvent.State);
+                var states = Extensions.GetDescription(ComVM.Event.State);
                 client.BaseAddress = new Uri("Https://maps.googleapis.com/maps/api/geocode/");
-                HttpResponseMessage response = client.GetAsync($"json?address={foundEvent.Street}+{foundEvent.Zip},+{foundEvent.City},+{states}&key=AIzaSyBBA-VL6jTbTGJNW77AsuCuLRVwXB2wKGo").Result;
+                HttpResponseMessage response = client.GetAsync($"json?address={ComVM.Event.Street}+{ComVM.Event.Zip},+{ComVM.Event.City},+{states}&key=AIzaSyBBA-VL6jTbTGJNW77AsuCuLRVwXB2wKGo").Result;
                 response.EnsureSuccessStatusCode();
                 var result = response.Content.ReadAsStringAsync().Result;
                 RootObject root = JsonConvert.DeserializeObject<RootObject>(result);
@@ -130,7 +133,7 @@ namespace GroupCapstone.Controllers
             }
 
 
-            return View(foundEvent);
+            return View(ComVM);
         }
 
         public ActionResult MyPurchasedTickets()
