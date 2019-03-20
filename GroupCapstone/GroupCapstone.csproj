@@ -293,7 +293,6 @@
     <Content Include="Views\EventHolder\Details.cshtml" />
     <Content Include="Views\Guest\GuestHome.cshtml" />
     <Content Include="Views\Guest\EventDetails.cshtml" />
-    <Content Include="Views\Event\CreateComments.cshtml" />
     <Content Include="Views\Event\AddComment.cshtml" />
     <Content Include="Views\Guest\Charge.cshtml" />
     <Content Include="Views\Cart\Create.cshtml" />
@@ -301,7 +300,7 @@
     <Content Include="Views\Guest\GiveRating.cshtml" />
     <Content Include="Views\Guest\MyPurchasedTickets.cshtml" />
     <Content Include="Views\Guest\Filter.cshtml" />
-    <Content Include="Views\Guest\WeatherJS.cshtml" />
+    <Content Include="Views\Guest\FilterHighRating.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Guest\Create.cshtml" />
