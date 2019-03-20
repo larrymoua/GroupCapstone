@@ -42,7 +42,7 @@ namespace GroupCapstone.Controllers
 
             var options = new ChargeCreateOptions
             {
-                Amount = cost*10,
+                Amount = cost*100,
                 Currency = "usd",
                 Description = "Example charge for larrymoua24@yahoo.com",
                 SourceId = stripeToken
