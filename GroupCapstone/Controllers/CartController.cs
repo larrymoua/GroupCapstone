@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using unirest_net.http;
 
 namespace GroupCapstone.Controllers
 {
@@ -33,28 +34,11 @@ namespace GroupCapstone.Controllers
         public ActionResult Create(string stripeToken, Models.Event events)
         {
 
-            //HttpResponse response = Unirest.post("https://neutrinoapi-qr-code.p.rapidapi.com/qr-code")
-            //.header("X-RapidAPI-Key", "42686f9288msh669750bfe57d0e8p14b94ejsnda982c981f0e")
-            //.header("Content-Type", "application/x-www-form-urlencoded")
-            //.field("bg-color", "#ffffff")
-            //.field("width", 128)
-            //.field("fg-color", "#000000")
-            //.field("height", 128)
-            //.field("content", "http://www.neutrinoapi.com")
-            //.asJson();
-
-
-
-
-
-
-
-
             StripeConfiguration.SetApiKey("sk_test_xUz5aOBDwQSi8S61VVen5E37");
             var CurrentUser = User.Identity.GetUserId();
             var foundEvent = db.events.Where(e => e.EventId == events.EventId).SingleOrDefault();
             var guestFound = db.guests.Where(e => e.ApplicationUserId == CurrentUser).SingleOrDefault();
-            long cost = (long)Convert.ToDouble(foundEvent.TicketPrice); 
+            long cost = (long)Convert.ToDouble(foundEvent.TicketPrice);
 
             var options = new ChargeCreateOptions
             {
@@ -85,6 +69,17 @@ namespace GroupCapstone.Controllers
                         {charge.Id}
                         -- GroupCapStone"
             };
+
+            //HttpResponse response = Unirest.post("https://neutrinoapi-qr-code.p.rapidapi.com/qr-code")
+            //.header("X-RapidAPI-Key", "42686f9288msh669750bfe57d0e8p14b94ejsnda982c981f0e")
+            //.header("Content-Type", $"{guestFound.FirstName} {guestFound.LastName} is confirmed! Confirmation is {charge.Id}")
+            //.field("bg-color", "#ffffff")
+            //.field("width", 128)
+            //.field("fg-color", "#000000")
+            //.field("height", 128)
+            //.field("content", "http://www.neutrinoapi.com")
+            //.asJson();
+
             using (var client = new SmtpClient())
             {
                 client.ServerCertificateValidationCallback = (s, c, h, e) => true;
