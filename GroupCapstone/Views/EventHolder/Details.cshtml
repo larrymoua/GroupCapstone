@@ -145,6 +145,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBA-VL6jTbTGJNW77AsuCuLRVwXB2wKGo&callback=initMap"
             async defer></script>
 </div>
+@Html.ActionLink("Back to List", "MyEvents")
 
 <h4>Comments about this event:</h4>
 @foreach (var item in Model.Comments)
