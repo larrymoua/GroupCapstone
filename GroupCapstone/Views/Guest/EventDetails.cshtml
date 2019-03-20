@@ -115,15 +115,17 @@
             async defer></script>
 
 
-
-<div>
-    @Html.ActionLink("Comment", "AddComment","Event", new { id = Model.Event.EventId }, null )
-</div>
+<br />
+<button>
+    @Html.ActionLink("Make a new comment", "AddComment","Event", new { id = Model.Event.EventId }, null )
+</button>
 
 <h4>Comments about this event:</h4>
-    @foreach(var item in Model.Comments)
-    {
-        <ul>@item.User</ul>
-        <ul>@item.Date</ul>
-        <ul>@item.Description</ul>
-    }
+@foreach(var item in Model.Comments)
+ {<p></p>
+<div style="border:1px solid black">
+    <p style="border-bottom:1px solid black">On @item.Date,</p>
+    <p>@item.User said:</p>
+    <p>@item.Description</p>
+</div>
+ }

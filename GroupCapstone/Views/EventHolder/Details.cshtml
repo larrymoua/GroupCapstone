@@ -1,4 +1,4 @@
-﻿@model GroupCapstone.Models.Event
+﻿@model GroupCapstone.Models.CommentVM
 
 @{
     ViewBag.Title = "Details";
@@ -20,82 +20,82 @@
     </h3>
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.EventName)
+            @Html.DisplayNameFor(model => model.Event.EventName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.EventName)
+            @Html.DisplayFor(model => model.Event.EventName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.EventDate)
+            @Html.DisplayNameFor(model => model.Event.EventDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.EventDate)
+            @Html.DisplayFor(model => model.Event.EventDate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Street)
+            @Html.DisplayNameFor(model => model.Event.Street)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Street)
+            @Html.DisplayFor(model => model.Event.Street)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.City)
+            @Html.DisplayNameFor(model => model.Event.City)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.City)
+            @Html.DisplayFor(model => model.Event.City)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Zip)
+            @Html.DisplayNameFor(model => model.Event.Zip)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Zip)
+            @Html.DisplayFor(model => model.Event.Zip)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Rating)
+            @Html.DisplayNameFor(model => model.Event.Rating)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Rating)
+            @Html.DisplayFor(model => model.Event.Rating)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TicketsAvailable)
+            @Html.DisplayNameFor(model => model.Event.TicketsAvailable)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TicketsAvailable)
+            @Html.DisplayFor(model => model.Event.TicketsAvailable)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TicketPrice)
+            @Html.DisplayNameFor(model => model.Event.TicketPrice)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.TicketPrice)
+            @Html.DisplayFor(model => model.Event.TicketPrice)
         </dd>
 
         <dt>
 
-            @Html.DisplayNameFor(model => model.Category)
+            @Html.DisplayNameFor(model => model.Event.Category)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Category)
+            @Html.DisplayFor(model => model.Event.Category)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.State)
+            @Html.DisplayNameFor(model => model.Event.State)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.State)
+            @Html.DisplayFor(model => model.Event.State)
         </dd>
 
     </dl>
@@ -120,7 +120,7 @@
     <script src="/js/plugins/openWeather.js"></script>
     <script>
         $(document).ready(function () {
-            $("a").click(function () {             
+            $("a").click(function () {
                 $.get("http://api.openweathermap.org/data/2.5/weather?lat=@ViewBag.lat&lon=@ViewBag.Long&APPID=35bd7d68bf30c2b4be5024747ceacecb&units=imperial}", function (response) {
                     //response
                     $("#reply").text(((response.main.temp - 273.15) * (9 / 5) + 32).toFixed());
@@ -146,6 +146,15 @@
             async defer></script>
 </div>
 
+<h4>Comments about this event:</h4>
+@foreach (var item in Model.Comments)
+{<p></p>
+    <div style="border:1px solid black">
+        <p style="border-bottom:1px solid black">On @item.Date,</p>
+        <p>@item.User said:</p>
+        <p>@item.Description</p>
+    </div>
+}
 
 
 
