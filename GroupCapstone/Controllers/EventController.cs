@@ -38,7 +38,7 @@ namespace GroupCapstone.Controllers
             _context.Comments.Add(comment);
 
             _context.SaveChanges();
-            return RedirectToAction("Details");
+            return RedirectToAction("EventDetails","Guest", new { id = commentView.Event.EventId });
         }
 
     }

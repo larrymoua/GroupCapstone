@@ -32,11 +32,13 @@ namespace GroupCapstone.Controllers
             var CurrentUser = User.Identity.GetUserId();
             var FoundEventHolder = db.eventHolders.Where(e => e.ApplicationUserId == CurrentUser).SingleOrDefault();
             var FoundEvent = db.events.Where(e => e.HolderId == FoundEventHolder.HolderId).ToList();
-            var sumOfRating = FoundEvent.Average(e => e.Rating);
-            //var avg = sumOfRating / FoundEvent.Count;
-            //FoundEventHolder.AvgRating = avg;
-            ViewBag.HolderAvg = sumOfRating;
-
+            double sumOfRating;
+            if (!FoundEvent.Count.Equals(0))
+            {
+                sumOfRating = FoundEvent.Average(e => e.Rating);
+                ViewBag.HolderAvg = sumOfRating;
+            }
+             
             return View(FoundEvent);
         }
 
@@ -141,11 +143,11 @@ namespace GroupCapstone.Controllers
 
                 db.events.Add(NewCreatedEvent);
                 db.SaveChanges();
-                return View("MyEvents");
+                return RedirectToAction("MyEvents");
             }
             catch
             {
-                return View("MyEvents");
+               return RedirectToAction("MyEvents");
             }
 
         }
